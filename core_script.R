@@ -23,7 +23,8 @@ cabinets = list(foursquare = "I:/COF/COF/_M3trics/external_useful_data/foursquar
                 gas_scrape= "C:/Users/lopezf/Desktop/regression_test/regression_test/gas_data",
                 citibike = "C:/Users/lopezf/Desktop/regression_test/regression_test/citibike/citibike_geocoded",
                 mta = "C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data_geocoded_tz",
-                git_home = "C:/Users/lopezf/Documents/R/R-3.3.1/library/taxi_esp"
+                git_home = "C:/Users/lopezf/Documents/R/R-3.3.1/library/taxi_esp",
+                gis = "I:\\COF\\COF\\GIS"
 ) 
 
 
@@ -388,10 +389,8 @@ zone_distribution = master_write[,sum(total_trips), by = .(zone, year(timestamp)
 
 
 #extract only manhattan---------------------------------------------------------------
-manhattan = taxi_zones[taxi_zones$Borough == "Manhattan",]
-master_man = master_write[master_write$zone %in% manhattan$LocationID,]
-master_man = na.omit(master_man)
 
+master_man = master_write[boro == "Manhattan",]
 
 #test basic linear model for manhattan-----------------------------------------------
 
@@ -405,6 +404,15 @@ fit = lm(total_trips ~  +
            gas_prices 
          #+ authorized_vehicles
          + arts_entertainment
+         + college_university
+         + event
+         + food
+         + nightlife
+         + outdoors_rec
+         + professional      
+         + residence
+         + shop_service
+         + travel
          , master_man)
 
 summary(fit)

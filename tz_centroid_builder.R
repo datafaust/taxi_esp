@@ -1,6 +1,6 @@
 #build out centroids from tz to use as spatial markers for zones 
 
-setwd("I:\\COF\\COF\\GIS")
+setwd(cabinets$gis)
 
 #load libraries-----------------------------
 library(rgeos)

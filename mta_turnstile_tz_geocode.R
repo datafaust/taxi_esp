@@ -5,16 +5,13 @@ library(maptools)
 library(spatialEco)
 
 #basic map --------------------------------------------------------
-setwd("C:\\Users\\lopezf\\Desktop\\regression_test\\regression_test")
-
-cd = readOGR("taxi_zones_sp.shp", layer = "taxi_zones_sp")
-
-cd_sp = readShapeSpatial("taxi_zones_sp.shp", proj4string=CRS("+proj=longlat +datum=NAD83"))
+setwd(cabinets$gis)
+cd = readOGR("tz_cd.shp", layer = "tz_cd")
+cd_sp = readShapeSpatial("tz_cd.shp", proj4string=CRS("+proj=longlat +datum=NAD83"))
 
 
 #pull lookup data--------------------------------------
-setwd("C:/Users/lopezf/Desktop/regression_test/regression_test")
-
+setwd(cabinets$git_home)
 lookup = read.csv("mta_longlat_lookup_table_final.csv", header =T)
 
 
