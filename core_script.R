@@ -67,25 +67,28 @@ cpifbev$DATE = as.Date(cpifbev$DATE)
 
 #weather data by day------------------------------------------------------------------------------------------------------
 weather = fread("https://www.wunderground.com/history/airport/KNYC/2015/1/1/CustomHistory.html?dayend=20&monthend=11&yearend=2016&req_city=&req_state=&req_statename=&reqdb.zip=&reqdb.magic=&reqdb.wmo=&format=1")
-
 weather2 = fread("https://www.wunderground.com/history/station/87938/2016/2/2/CustomHistory.html?dayend=16&monthend=12&yearend=2016&req_city=&req_state=&req_statename=&reqdb.zip=&reqdb.magic=&reqdb.wmo=&format=1")
-
 
 names(weather2) = names(weather)
 
 weather = rbind(weather, weather2)
+weather = weather[nchar(weather$EST) > 5,]
+
 
 #split dates, edit and reprep
-weather = data.frame(weather, do.call(rbind, str_split(weather$EST, '-')))
-weather$X2 = as.numeric(as.character(weather$X2))
-weather$X3 = as.numeric(as.character(weather$X3))
-weather$X2 = ifelse(weather$X2 < 10, paste0("0",weather$X2), weather$X2)
-weather$X3 = ifelse(weather$X3 < 10, paste0("0",weather$X3), weather$X3)
-weather$EST = as.Date(paste0(weather$X1, "-" ,weather$X2,"-" ,weather$X3), "%Y-%m-%d")
+weather = setDT(data.frame(weather, do.call(rbind, str_split(weather$EST, '-'))))
+weather[,X2:= as.numeric(as.character(X2))]
+weather[,X3:= as.numeric(as.character(X3))]
+weather[,X2:= ifelse(X2 < 10, paste0("0",X2), X2)]
+weather[,X3:= ifelse(X3 < 10, paste0("0",X3), X3)]
+weather[,EST:= as.Date(paste0(X1, "-" ,X2,"-" ,X3), "%Y-%m-%d")]
 
 
 #variables we want
-weather = weather[, c("EST", "Mean.TemperatureF", "Mean.Wind.SpeedMPH", "PrecipitationIn")]
+weather = weather[, c("EST", "Mean.TemperatureF", "Mean.Wind.SpeedMPH", "PrecipitationIn")][
+  ,Mean.TemperatureF:=as.numeric(Mean.TemperatureF)][
+    ,Mean.Wind.SpeedMPH:=as.numeric(Mean.Wind.SpeedMPH)][
+      ,PrecipitationIn:=as.numeric(PrecipitationIn)]
 weather = weather[!duplicated(weather$EST),]
 
 
@@ -148,11 +151,10 @@ names(bike_trips) = c("date", "hour","taxi_zone","bike_trips")
 bike_trips[,date:= format(as.Date(date, "%m/%d/%Y"), "%Y-%m-%d")]
 
 #paste0 into bike data if less than 10
-bike_trips[,hour:= as.numeric(as.character(hour))][
-  ,hour:= ifelse(hour < 10, paste0("0",hour),hour)][
+bike_trips[,hour:= as.numeric(as.character(hour))][,hour:= ifelse(hour < 10, paste0("0",hour),hour)][
     ,hour:= paste0(hour, ":00")][
-      ,date_zone_id:= paste0(date,"_",hour,"_",taxi_zone)][
-        ,date_zone_id:= gsub("[^0-9]", "",date_zone_id)]
+      ,date_zone_id:= paste0(date,"_",hour,"_",taxi_zone)]
+bike_trips[,date_zone_id:= gsub("[^0-9]", "",date_zone_id)]
 
 
 #mta subway data by hour and region------------------------------------------------------------------------------------------------------
@@ -278,14 +280,13 @@ names(master_day) = c("date", "mean_temp", "mean_wind_speed", "precipitation", "
 #merge hourly variables on master tpep trip set
 master_hour = merge(master_hour, hourly_med_trips_loc, by = "date_zone_id", all.x = T)
 
-#master_hour = master_hour[order(master_hour$zone, timestamp),]
 master_hour = merge(master_hour, hourly_shl_trips_loc[, c("date_zone_id","trips_shl")], 
                     by = 'date_zone_id', all.x = T)
 master_hour = merge(master_hour, bike_trips[,c("date_zone_id","bike_trips")],by = "date_zone_id", all.x = T)
 master_hour = master_hour[order(date
                                 ,zone_from
                                 ,hour),]
-master_hour = merge(master_hour, subway_trips[,c("date_zone_id","sum_entries")], by = "date_zone_id", all.x =T)
+#master_hour = merge(master_hour, subway_trips[,c("date_zone_id","sum_entries")], by = "date_zone_id", all.x =T)
 
 #merge fs data
 master_hour$year_id = paste0(year(master_hour$timestamp),master_hour$zone)
@@ -303,33 +304,35 @@ summary(master_hour)
 
 #treat missing values in data--------------------------------------------------------------
 #we assume taxi data as pure so NA's for trips = 0
-master_hour$trips_shl = ifelse(is.na(master_hour$trips_shl), 0, master_hour$trips_shl)
-master_hour$trips_med = ifelse(is.na(master_hour$trips_med), 0, master_hour$trips_med)
-master_hour$bike_trips = ifelse(is.na(master_hour$bike_trips),0,master_hour$bike_trips)
+master_hour[,trips_shl:= ifelse(is.na(trips_shl), 0, trips_shl)]
+master_hour[,trips_med:= ifelse(is.na(trips_med), 0, trips_med)]
+master_hour[,bike_trips:= ifelse(is.na(bike_trips),0,bike_trips)]
 
 #spatial and fs recode to 0 and objectid
-master_hour$OBJECTID = ifelse(is.na(master_hour$OBJECTID), master_hour$zone, master_hour$OBJECTID)
-master_hour$`Arts&Entertainment` = ifelse(is.na(master_hour$`Arts&Entertainment`), 0, master_hour$`Arts&Entertainment`)
-master_hour$`College&University` = ifelse(is.na(master_hour$`College&University`), 0 , master_hour$`College&University`)
-master_hour$Event = ifelse(is.na(master_hour$Event), 0, master_hour$Event)
-master_hour$Food = ifelse(is.na(master_hour$Food), 0, master_hour$Food)
-master_hour$NightlifeSpot = ifelse(is.na(master_hour$NightlifeSpot), 0, master_hour$NightlifeSpot)
-master_hour$`Outdoors&Recreation` = ifelse(is.na(master_hour$`Outdoors&Recreation`), 0, master_hour$`Outdoors&Recreation`)
-master_hour$`Professional&OtherPlaces` = ifelse(is.na(master_hour$`Professional&OtherPlaces`), 0, master_hour$`Professional&OtherPlaces`)
-master_hour$Residence = ifelse(is.na(master_hour$Residence), 0, master_hour$Residence)
-master_hour$`Shop&Service` = ifelse(is.na(master_hour$`Shop&Service`),0, master_hour$`Shop&Service`)
-master_hour$`Travel&Transport` = ifelse(is.na(master_hour$`Travel&Transport`), 0 , master_hour$`Travel&Transport`)
+master_hour[,OBJECTID:= ifelse(is.na(OBJECTID), zone, OBJECTID)]
+master_hour[,`Arts&Entertainment`:= ifelse(is.na(`Arts&Entertainment`), 0, `Arts&Entertainment`)]
+master_hour[,`College&University` := ifelse(is.na(`College&University`), 0 , `College&University`)]
+master_hour[,Event:= ifelse(is.na(Event), 0, Event)]
+master_hour[,Food := ifelse(is.na(Food), 0, Food)]
+master_hour[,NightlifeSpot:= ifelse(is.na(NightlifeSpot), 0, NightlifeSpot)]
+master_hour[,`Outdoors&Recreation` := ifelse(is.na(`Outdoors&Recreation`), 0, `Outdoors&Recreation`)]
+master_hour[,`Professional&OtherPlaces` := ifelse(is.na(`Professional&OtherPlaces`), 0, `Professional&OtherPlaces`)]
+master_hour[,Residence := ifelse(is.na(Residence), 0, Residence)]
+master_hour[,`Shop&Service` := ifelse(is.na(`Shop&Service`),0, `Shop&Service`)]
+master_hour[,`Travel&Transport` := ifelse(is.na(`Travel&Transport`), 0 , `Travel&Transport`)]
 
 #total_trips, weekday and zone as factor
-master_hour$total_trips = master_hour$trips_shl + master_hour$trips_med
-master_hour$weekday.f = as.factor(weekdays(master_hour$timestamp))
-master_hour$zone.f = as.factor(master_hour$zone)
+master_hour[,total_trips := trips_shl + trips_med]
+master_hour[,weekday.f := as.factor(weekdays(timestamp))]
+master_hour[,zone.f := as.factor(zone)]
+master_hour[,hour.f :=as.factor(hour(timestamp))]
 
 
 #extract final data set-------------------------------------------------------------
 master_write = master_hour[, c("date_zone_id",
                                "zone",
                                "zone.f",
+                               "hour.f",
                                "timestamp",
                                "weekday.f",
                                "gas_prices",
@@ -339,8 +342,8 @@ master_write = master_hour[, c("date_zone_id",
                                "bike_trips",
                                "trips_shl",
                                "trips_med",
-                               "sum_entries",
-                               "OBJECTID",
+                            #   "sum_entries",
+                            #   "OBJECTID",
                                "Arts&Entertainment",
                                "College&University",
                                "Event",
@@ -362,6 +365,18 @@ write.csv(master_write, "master_raw.csv")
 
 #pull out zones that don't have a lot of data
 zone_distribution = master_write[,sum(total_trips), by = .(zone, year(timestamp))]
+
+
+
+
+
+#extract only manhattan---------------------------------------------------------------
+manhattan = taxi_zones[taxi_zones$Borough == "Manhattan",]
+master_man = master_write[master_write$zone %in% manhattan$LocationID,]
+
+
+
+#test basic linear model for manhattan-----------------------------------------------
 
 
 
@@ -428,13 +443,23 @@ plot(master$subway_trips_entries, master$trips_total)
 fit = lm(total_trips ~  + 
            mean_temp +
            zone.f +
+           hour.f +
            weekday.f +
-           mean_wind_speed + 
+           #mean_wind_speed + 
            precipitation +
-           gas_prices  +
+           gas_prices 
            #+ authorized_vehicles
            + bike_trips
-         , master_write)
+           + `Arts&Entertainment`
+           + `College&University`
+           + Food
+           + NightlifeSpot
+           +`Professional&OtherPlaces`
+           + Residence
+           + `Shop&Service`
+           + `Travel&Transport`
+           + `Outdoors&Recreation`
+         , master_man)
 
 summary(fit)
 plot(fit)
