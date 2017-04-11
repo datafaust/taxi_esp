@@ -1,0 +1,674 @@
+"","superid","Division","adjusted_id","Line","Station_Name","Station_Latitude","Station_Longitude"
+"1","1037","IRT","1037","Flushing","103rdSt",40.749865,-73.8627
+"2","1036","IRT","1036","Lexington","103rdSt",40.7906,-73.947478
+"3","103bc","IND","103bc","8 Avenue","103rdSt",40.796092,-73.961454
+"4","1031","IRT","1031","Broadway-7th Ave","103rdSt",40.799446,-73.968379
+"5","104102jz","BMT","104102jz","Broadway Jamaica","104thSt-102ndSt",40.695178,-73.84433
+"6","104jz",NA,"104102jz",NA,"104thSt-102ndSt",40.695178,-73.84433
+"7","104a","IND","104a","Liberty","104thSt-OxfordAv",40.681711,-73.837683
+"8","1106","IRT","1106","Lexington","110thSt",40.79502,-73.94425
+"9","11023","IRT","11023","Lenox","110thSt-CentralParkNorth",40.799075,-73.951822
+"10","111j","BMT","111j","Broadway Jamaica","111thSt",40.697418,-73.836345
+"11","1117","IRT","1117","Flushing","111thSt",40.75173,-73.855334
+"12","111a","IND","111a","Liberty","111thSt-GreenwoodAv",40.684331,-73.832163
+"13","1166","IRT","1166","Lexington","116thSt",40.798629,-73.941617
+"14","11623","IRT","11623","Lenox","116thSt",40.802098,-73.949625
+"15","116bc","IND","116bc","8 Avenue","116thSt",40.805085,-73.954882
+"16","1161","IRT","1161","Broadway-7th Ave","116thSt-ColumbiaUniversity",40.807722,-73.96411
+"17","121jz","BMT","121jz","Broadway Jamaica","121stSt",40.700492,-73.828294
+"18","125456","IRT","125456","Lexington","125thSt",40.804138,-73.937594
+"19","12523","IRT","12523","Lenox","125thSt",40.807754,-73.945495
+"20","125abcd","IND","125abcd","8 Avenue","125thSt",40.811109,-73.952343
+"21","125acbd",NA,"125abcd",NA,"125thSt",40.811109,-73.952343
+"22","1251","IRT","1251","Broadway-7th Ave","125thSt",40.815581,-73.958372
+"23","13523","IRT","13523","Lenox","135thSt",40.814229,-73.94077
+"24","135bc","IND","135bc","8 Avenue","135thSt",40.817894,-73.947649
+"25","1371","IRT","1371","Broadway-7th Ave","137thSt-CityCollege",40.822008,-73.953676
+"27","13845","IRT","13845","Jerome","138thSt",40.813224,-73.929849
+"29","13836","IRT","13836","Pelham","138thSt-3rdAve",40.810476,-73.926138
+"30","1453","IRT","1453","Lenox","145thSt",40.820421,-73.936245
+"31","145abcd","IND","145abcd","8 Avenue","145thSt",40.824783,-73.944216
+"32","1451","IRT","1451","Broadway-7th Ave","145thSt",40.826551,-73.95036
+"33","149325","IRT","149325","White Plains Road","149thSt-3rdAv",40.816109,-73.917757
+"34","149245","IRT","149245","Jerome","149thSt-GrandConcourse",40.818375,-73.927351
+"35","14123flm",NA,"14flm123",NA,"14st",40.738228,-73.996209
+"36","14flm123","IRT","14flm123","Broadway-7th Ave","14thSt",40.737826,-74.000201
+"37","141",NA,"14flm123","broadway","14thSt",40.738228,-73.996209
+"38","14acel","IND","14acel","8 Avenue","14thSt",40.740893,-74.00169
+"39","14lnqr456","IRT","14lnqr456","Lexington","14thSt-UnionSquare",40.734673,-73.989951
+"40","14456lnqr",NA,"14lnqr456",NA,"14thSt-UnionSquare",40.734673,-73.989951
+"41","146flm123",NA,"14lnqr457",NA,"14thSt-UnionSquare",40.734673,-73.989951
+"42","155bd","IND","155bd","Concourse","155thSt",40.830135,-73.938209
+"43","155c","IND","155c","8 Avenue","155thSt",40.830518,-73.941514
+"44","1571","IRT","1571","Broadway-7th Ave","157thSt",40.834041,-73.94489
+"46","163c","IND","163c","8 Avenue","163rdSt-AmsterdamAv",40.836013,-73.939892
+"47","167bd","IND","167bd","Concourse","167thSt",40.833769,-73.918432
+"48","1674","IRT","1674","Jerome","167thSt",40.835537,-73.9214
+"49","1681ac",NA,"168ac1",NA,"168ST-BROADWAY",40.840556,-73.940133
+"50","168ac1","IRT","168ac1","Broadway-7th Ave","168thSt",40.840556,-73.940133
+"51","168ac","IND","168ac","8 Avenue","168thSt-WashingtonHeights",40.840719,-73.939561
+"52","169f","IND","169f","Queens Boulevard","169thSt",40.71047,-73.793604
+"53","170bd","IND","170bd","Concourse","170thSt",40.839306,-73.9134
+"54","1704","IRT","1704","Jerome","170thSt",40.840075,-73.917791
+"55","174175bd","IND","174175bd","Concourse","174-175thSts",40.8459,-73.910136
+"56","17425","IRT","17425","White Plains Road","174thSt",40.837288,-73.887734
+"58","175a","IND","175a","8 Avenue","175thSt",40.847391,-73.939704
+"59","1764","IRT","1764","Jerome","176thSt",40.84848,-73.911794
+"61","1811","IRT","1811","Broadway-7th Ave","181stSt",40.849505,-73.933596
+"63","181a","IND","181a","8 Avenue","181stSt",40.851695,-73.937969
+"64","182183bd","IND","182183bd","Concourse","182nd-183rdSts",40.856093,-73.900741
+"65","1834","IRT","1834","Jerome","183rdSt",40.858407,-73.903879
+"66","18d","BMT","18d","West End","18thAv",40.607954,-74.001736
+"67","18n","BMT","18n","Sea Beach","18thAv",40.620671,-73.990414
+"68","18f","IND","18f","Culver","18thAv",40.629755,-73.976971
+"69","181","IRT","181","Broadway-7th Ave","18thSt",40.74104,-73.997871
+"71","190a","IND","190a","8 Avenue","190thSt",40.859022,-73.93418
+"72","1911","IRT","1911","Broadway-7th Ave","191stSt",40.855225,-73.929412
+"73","1l","BMT","1l","Canarsie","1stAv",40.730953,-73.981628
+"74","2071","IRT","2071","Broadway-7th Ave","207thSt",40.864614,-73.918819
+"75","20d","BMT","20d","West End","20thAv",40.604556,-73.998168
+"76","20n","BMT","20n","Sea Beach","20thAv",40.61741,-73.985026
+"77","2151","IRT","2151","Broadway-7th Ave","215thSt",40.869444,-73.915279
+"79","21925","IRT","21925","White Plains Road","219thSt",40.883895,-73.862633
+"80","21g","IND","21g","Crosstown","21stSt",40.744065,-73.949724
+"81","21f","IND","21f","63rd Street","21stSt",40.754203,-73.942836
+"82","22525","IRT","22525","White Plains Road","225thSt",40.888022,-73.860341
+"83","2311","IRT","2311","Broadway-7th Ave","231stSt",40.878856,-73.904834
+"85","23325","IRT","23325","White Plains Road","233rdSt",40.893193,-73.857473
+"86","2381","IRT","2381","Broadway-7th Ave","238thSt",40.884667,-73.90087
+"87","23825","IRT","23825","White Plains Road","238thSt-NereidAv",40.898379,-73.854376
+"88","236","IRT","236","Lexington","23rdSt",40.739864,-73.986599
+"90","23nr","BMT","23nr","Broadway","23rdSt",40.741303,-73.989344
+"91","235nr",NA,"23nr",NA,"23rdSt",40.741303,-73.989344
+"92","23fm","IND","23fm","6 Avenue","23rdSt",40.742878,-73.992821
+"93","236fm",NA,"23fm",NA,"23rdSt",40.742878,-73.992821
+"94","231","IRT","231","Broadway-7th Ave","23rdSt",40.744081,-73.995657
+"95","23ce","IND","23ce","8 Avenue","23rdSt",40.745906,-73.998041
+"96","23emg",NA,"23egm7",NA,"23rdSt",40.747846,-73.946
+"97","23egm7","IND","23egm7","Queens Boulevard","23rdSt-ElyAv",40.747846,-73.946
+"98","25d","BMT","25d","West End","25thAv",40.597704,-73.986829
+"99","25r","BMT","25r","4 Avenue","25thSt",40.660397,-73.998091
+"100","286","IRT","286","Lexington","28thSt",40.74307,-73.984264
+"103","28nr","BMT","28nr","Broadway","28thSt",40.745494,-73.988691
+"104","281","IRT","281","Broadway-7th Ave","28thSt",40.747215,-73.993365
+"105","2f","IND","2f","6 Avenue","2ndAv",40.723402,-73.989938
+"106","30nq","BMT","30nq","Astoria","30Av-GrandAv",40.766779,-73.921479
+"107","31nq",NA,"30nq",NA,"30Av-GrandAv",40.766779,-73.921479
+"108","336","IRT","336","Lexington","33rdSt",40.746081,-73.982076
+"109","34bdfmnqr","BMT","34bdfmnqr","Broadway","34thSt",40.749567,-73.98795
+"110","34123","IRT","34123","Broadway-7th Ave","34thSt",40.750373,-73.991057
+"111","34ace","IND","34ace","8 Avenue","34thSt",40.752287,-73.993391
+"112","34123ace",NA,"34ace","","34thSt",40.752287,-73.993391
+"113","36nq","BMT","36nq","Astoria","36Av-WashingtonAv",40.756804,-73.929575
+"114","36nr","BMT","36nr","4 Avenue","36thSt",40.655144,-74.003549
+"115","36dnr",NA,"36nr","","36thSt",40.655144,-74.003549
+"116","36mr","IND","36mr","Queens Boulevard","36thSt",40.752039,-73.928781
+"117","39nq","BMT","39nq","Astoria","39Av-BeebeAv",40.752882,-73.932755
+"118","3l","BMT","3l","Canarsie","3rdAv",40.732849,-73.986122
+"119","42bdfm7","IND","42bdfm7","6 Avenue","42ndSt",40.754222,-73.984569
+"120","42acenqrs1237","IND","42acenqrs1237","8 Avenue","42ndSt",40.757308,-73.989735
+"121","45egm7","IRT","45egm7","Flushing","45Rd-CourtHouseSq",40.747023,-73.945264
+"122","courtsq7",NA,"45egm7","","45Rd-CourtHouseSq",40.747023,-73.945264
+"123","courtsqemg",NA,"45egm7","","45Rd-CourtHouseSq",40.747023,-73.945264
+"124","45r","BMT","45r","4 Avenue","45thSt",40.648939,-74.010006
+"125","46mr","IND","46mr","Queens Boulevard","46thSt",40.756312,-73.913333
+"126","4750bdfm","IND","4750bdfm","6 Avenue","47-50thStsRockefellerCenter",40.758663,-73.981329
+"127","4750bdfm7","IND","4750bdfm7","6 Avenue","47-50thStsRockefellerCenter",40.758663,-73.981329
+"128","49nqr","BMT","49nqr","Broadway","49thSt",40.759901,-73.984139
+"129","497nqr",NA,"49nqr","","49thSt",40.759901,-73.984139
+"130","4f","IND","4f","6 Avenue","4thAv",40.670272,-73.989779
+"131","50d","BMT","50d","West End","50thSt",40.63626,-73.994791
+"132","501","IRT","501","Broadway-7th Ave","50thSt",40.761728,-73.983849
+"133","753bde",NA,"501","","50thSt",40.761728,-73.983849
+"134","50ce","IND","50ce","8 Avenue","50thSt",40.762456,-73.985984
+"135","51em6","IRT","51em6","Lexington","51stSt",40.757107,-73.97192
+"136","53r","BMT","53r","4 Avenue","53rdSt",40.645069,-74.014034
+"137","55d","BMT","55d","West End","55thSt",40.631435,-73.995476
+"138","57f","IND","57f","6 Avenue","57thSt",40.763972,-73.97745
+"139","57nqr","BMT","57nqr","Broadway","57thSt",40.764664,-73.980658
+"140","577nqr",NA,"57nqr","","57thSt",40.764664,-73.980658
+"141","59nr","BMT","59nr","4 Avenue","59thSt",40.641362,-74.017881
+"142","59nqr456","IRT","59nqr456","Lexington","59thSt",40.762526,-73.967967
+"143","59456nqr",NA,"59nqr456","","59thSt",40.762526,-73.967967
+"144","59abcd1","IND","59abcd1","8 Avenue","59thSt",40.768296,-73.981736
+"145","591abcd",NA,"59abcd1","","59thSt-ColumbusCircle",40.768247,-73.981929
+"146","5bdfm7","IRT","5bdfm7","Flushing","5thAv",40.753821,-73.981963
+"147","57bdfm",NA,"5bdfm7","","5thAv",40.753821,-73.981963
+"148","5nqr","BMT","5nqr","Broadway","5thAv",40.764811,-73.973347
+"149","559nqr",NA,"5nqr","","5thAv",40.764811,-73.973347
+"150","553em","IND","553em","Queens Boulevard","5thAv-53rdSt",40.760167,-73.975224
+"151","62dn","BMT","62dn","West End","62ndSt",40.626472,-73.996895
+"152","63mr","IND","63mr","Queens Boulevard","63rdDrive-RegoPark",40.729846,-73.861604
+"153","65mr","IND","65mr","Queens Boulevard","65thSt",40.749669,-73.898453
+"154","661","IRT","661","Broadway-7th Ave","66thSt-LincolnCenter",40.77344,-73.982209
+"156","67mr","IND","67mr","Queens Boulevard","67thAv",40.726523,-73.852719
+"157","686","IRT","686","Lexington","68thSt-HunterCollege",40.768141,-73.96387
+"160","6flm123","BMT","6flm123","Canarsie","6thAv",40.737335,-73.996786
+"161","71d","BMT","71d","West End","71stSt",40.619589,-73.998864
+"162","72bc","IND","72bc","8 Avenue","72ndSt",40.775594,-73.97641
+"163","72123","IRT","72123","Broadway-7th Ave","72ndSt",40.778453,-73.98197
+"164","75ef","IND","75ef","Queens Boulevard","75thAv",40.718331,-73.837324
+"165","77r","BMT","77r","4 Avenue","77thSt",40.629742,-74.02551
+"166","776","IRT","776","Lexington","77thSt",40.77362,-73.959874
+"167","79d","BMT","79d","West End","79thSt",40.613501,-74.00061
+"168","791","IRT","791","Broadway-7th Ave","79thSt",40.783934,-73.979917
+"171","7f","IND","7f","6 Avenue","7thAv",40.666271,-73.980305
+"172","7fg","6 Avenue","7f","","7thAv",40.666271,-73.980305
+"173","7bq","BMT","7bq","Brighton","7thAv",40.67705,-73.972367
+"174","7bde","IND","7bde","Queens Boulevard","7thAv",40.762862,-73.981637
+"175","80a","IND","80a","Liberty","80thSt-HudsonSt",40.679371,-73.858992
+"176","81bc","IND","81bc","8 Avenue","81stSt-MuseumofNaturalHistory",40.781433,-73.972143
+"177","827","IRT","827","Flushing","82ndSt-JacksonHeights",40.747659,-73.883697
+"178","86n","BMT","86n","Sea Beach","86thSt",40.592721,-73.97823
+"179","86r","BMT","86r","4 Avenue","86thSt",40.622687,-74.028398
+"180","86456","IRT","86456","Lexington","86thSt",40.779492,-73.955589
+"181","86bc","IND","86bc","8 Avenue","86thSt",40.785868,-73.968916
+"182","861","IRT","861","Broadway-7th Ave","86thSt",40.788644,-73.976218
+"186","88a","IND","88a","Liberty","88thSt-BoydAv",40.679843,-73.85147
+"187","8n","BMT","8n","Sea Beach","8thAv",40.635064,-74.011719
+"188","8acel","BMT","8acel","Canarsie","8thAv",40.739777,-74.002578
+"189","8nr","BMT","8nr","Broadway","8thSt",40.730328,-73.992629
+"190","907","IRT","907","Flushing","90thStElmhurst",40.748408,-73.876613
+"191","95r","BMT","95r","4 Avenue","95thSt",40.616622,-74.030876
+"192","966","IRT","966","Lexington","96thSt",40.785672,-73.95107
+"194","96bc","IND","96bc","8 Avenue","96thSt",40.791646,-73.964699
+"195","96123","IRT","96123","Broadway-7th Ave","96thSt",40.793919,-73.972323
+"196","9d","BMT","9d","West End","9thAv",40.646292,-73.994324
+"197","9fgr","BMT","9fgr","4 Avenue","9thSt",40.670847,-73.988302
+"198","9fg",NA,"9fgr","","9thSt",40.670847,-73.988302
+"199","alabamaavj","BMT","alabamaavj","Broadway Jamaica","AlabamaAv",40.676992,-73.898654
+"200","alabamaavej",NA,"alabamaavj","","AlabamaAv",40.676992,-73.898654
+"201","allertonav25","IRT","allertonav25","White Plains Road","AllertonAv",40.865462,-73.867352
+"202","allertonave25",NA,"allertonav25","","AllertonAv",40.865462,-73.867352
+"203","aqueduct-northconduitava","IND","aqueduct-northconduitava","Rockaway","Aqueduct-NorthConduitAv",40.668234,-73.834058
+"204","aqueduct-ncndta",NA,"aqueduct-northconduitava","","Aqueduct-NorthConduitAv",40.668234,-73.834058
+"205","aqueductracetracka","IND","aqueductracetracka","Rockaway","AqueductRacetrack",40.672131,-73.835812
+"206","aqueducttracka",NA,"aqueductracetracka","","AqueductRacetrack",40.672131,-73.835812
+"207","astoriablvd-hoytavnq","BMT","astoriablvd-hoytavnq","Astoria","AstoriaBlvd-HoytAv",40.770258,-73.917843
+"208","hoytst-astorianq",NA,"astoriablvd-hoytavnq","","AstoriaBlvd-HoytAv",40.770258,-73.917843
+"209","astorplace6","IRT","astorplace6","Lexington","AstorPlace",40.730054,-73.99107
+"210","atlanticavl","BMT","atlanticavl","Canarsie","AtlanticAv",40.675345,-73.903097
+"211","atlanticavel",NA,"atlanticavl","","AtlanticAv",40.675345,-73.903097
+"212","atlanticavbqdnr2345","BMT","atlanticavbqdnr2345","Brighton","AtlanticAv",40.68446,-73.97689
+"213","atlanticav-barclaysctrbqdnr2345","BMT","atlanticav-barclaysctrbqdnr2345","4 Avenue","AtlanticAv-BarclaysCtr",40.683666,-73.97881
+"214","atlanticav-barclaysctrbdnqr2345","IRT","atlanticav-barclaysctrbdnqr2345","Eastern Parkway","AtlanticAv-BarclaysCtr",40.684359,-73.977666
+"215","barclayscenter2345bdnqr",NA,"atlanticav-barclaysctrbdnqr2345","","AtlanticAv-BarclaysCtr",40.684359,-73.977666
+"216","barclayscenterbdnqr2345",NA,"atlanticav-barclaysctrbdnqr2345","","AtlanticAv-BarclaysCtr",40.684359,-73.977666
+"217","avhbq","BMT","avhbq","Brighton","AvH",40.62927,-73.961639
+"218","avehbq",NA,"avhbq","","AvH",40.62927,-73.961639
+"219","avif","IND","avif","Culver","AvI",40.625322,-73.976127
+"220","aveif",NA,"avif","","AvI",40.625322,-73.976127
+"221","avjbq","BMT","avjbq","Brighton","AvJ",40.625039,-73.960803
+"222","avejbq",NA,"avjbq","","AvJ",40.625039,-73.960803
+"223","avmbq","BMT","avmbq","Brighton","AvM",40.617618,-73.959399
+"224","avembq",NA,"avmbq","","AvM",40.617618,-73.959399
+"225","avnf","IND","avnf","Culver","AvN",40.61514,-73.974197
+"226","avenf",NA,"avnf","","AvN",40.61514,-73.974197
+"227","avpf","IND","avpf","Culver","AvP",40.608944,-73.973022
+"228","avepf",NA,"avpf","","AvP",40.608944,-73.973022
+"229","avuf","IND","avuf","Culver","AvU",40.596063,-73.973357
+"230","aveuf",NA,"avuf","","AvU",40.596063,-73.973357
+"231","avun","BMT","avun","Sea Beach","AvU",40.597473,-73.979137
+"232","aveun",NA,"avun","","AvU",40.597473,-73.979137
+"233","avubq","BMT","avubq","Brighton","AvU",40.5993,-73.955929
+"234","aveubq",NA,"avubq","","AvU",40.5993,-73.955929
+"235","avxf","IND","avxf","Culver","AvX",40.58962,-73.97425
+"236","avexf",NA,"avxf","","AvX",40.58962,-73.97425
+"237","baychesterav5","IRT","baychesterav5","Dyre Av","BaychesterAv",40.878663,-73.838591
+"238","baychesterave5",NA,"baychesterav5","","BaychesterAv",40.878663,-73.838591
+"239","bayparkwayd","BMT","bayparkwayd","West End","BayParkway",40.601875,-73.993728
+"240","22n","BMT","22n","Sea Beach","BayParkway-22ndAv",40.611815,-73.981848
+"241","22f","IND","22f","Culver","BayParkway-22ndAv",40.620769,-73.975264
+"243","bayridgeavr","BMT","bayridgeavr","4 Avenue","BayRidgeAv",40.634967,-74.023377
+"244","bayridgeaver",NA,"bayridgeavr","","BayRidgeAv",40.634967,-74.023377
+"245","105h","IND","105h","Rockaway","Beach105thSt",40.583209,-73.827559
+"246","105as",NA,"105h",NA,"Beach105thSt",40.583209,-73.827559
+"247","25a","IND","25a","Rockaway","Beach25thSt",40.600066,-73.761353
+"248","36a","IND","36a","Rockaway","Beach36thSt",40.595398,-73.768175
+"249","44a","IND","44a","Rockaway","Beach44thSt",40.592943,-73.776013
+"250","60a","IND","60a","Rockaway","Beach60thSt",40.592374,-73.788522
+"251","67a","IND","67a","Rockaway","Beach67thSt",40.590927,-73.796924
+"252","90h","IND","90h","Rockaway","Beach90thSt",40.588034,-73.813641
+"253","90as",NA,"90h","","Beach90thSt",40.588034,-73.813641
+"254","98h","IND","98h","Rockaway","Beach98thSt",40.585307,-73.820558
+"255","98as",NA,"98h","","Beach98thSt",40.585307,-73.820558
+"256","bedfordavl","BMT","bedfordavl","Canarsie","BedfordAv",40.717304,-73.956872
+"257","bedfordavel",NA,"bedfordavl","","BedfordAv",40.717304,-73.956872
+"258","bedford-nostrandavsg","IND","bedford-nostrandavsg","Crosstown","Bedford-NostrandAvs",40.689627,-73.953522
+"259","bedford/nostrang",NA,"bedford-nostrandavsg","","Bedford-NostrandAvs",40.689627,-73.953522
+"260","bedfordparkblvdbd","IND","bedfordparkblvdbd","Concourse","BedfordParkBlvd",40.873244,-73.887138
+"261","bedfordparkblbd",NA,"bedfordparkblvdbd","","BedfordParkBlvd",40.873244,-73.887138
+"262","bedfordparkblvd-lehmancollege4","IRT","bedfordparkblvd-lehmancollege4","Jerome","BedfordParkBlvd-LehmanCollege",40.873412,-73.890064
+"263","bedfordparkbl4",NA,"bedfordparkblvd-lehmancollege4","","BedfordParkBlvd-LehmanCollege",40.873412,-73.890064
+"264","bergenst23","IRT","bergenst23","Eastern Parkway","BergenSt",40.680829,-73.975098
+"265","bergenstfg","IND","bergenstfg","6 Avenue","BergenSt",40.686145,-73.990862
+"266","beverlyrdbq","BMT","beverlyrdbq","Brighton","BeverlyRd",40.644031,-73.964492
+"267","beverleyroadbq",NA,"beverlyrdbq","","BeverlyRd",40.644031,-73.964492
+"268","beverlyrd25","IRT","beverlyrd25","Nostrand","BeverlyRd",40.645098,-73.948959
+"269","beverlyroad25",NA,"beverlyrd25","","BeverlyRd",40.645098,-73.948959
+"270","bleeckerstbdfm6","IRT","bleeckerstbdfm6","Lexington","BleeckerSt",40.725915,-73.994659
+"271","bleeckerst6df",NA,"bleeckerstbdfm6","","BleeckerSt",40.725915,-73.994659
+"272","467","IRT","467","Flushing","BlissSt-46thSt",40.743132,-73.918435
+"273","boroughhallr2345","IRT","boroughhallr2345","Lexington","BoroughHall",40.692404,-73.990151
+"274","boroughhall/ct2345r",NA,"boroughhallr2345","","BoroughHall",40.693219,-73.989998
+"275","boroughhall/ctr2345",NA,"boroughhallr2345","","BoroughHall",40.693219,-73.989998
+"276","botanicgardensfs2345","BMT","botanicgardensfs2345","Franklin","BotanicGardens",40.670343,-73.959245
+"277","botanicgardens2345",NA,"botanicgardensfs2345","","BotanicGardens",40.670343,-73.959245
+"278","boweryjz","BMT","boweryjz","Nassau","Bowery",40.72028,-73.993915
+"279","bowlinggreen45","IRT","bowlinggreen45","Lexington","BowlingGreen",40.704817,-74.014065
+"280","briarwood-vanwyckblvdf","IND","briarwood-vanwyckblvdf","Queens Boulevard","Briarwood-VanWyckBlvd",40.709179,-73.820574
+"281","brightonbeachbq","BMT","brightonbeachbq","Brighton","BrightonBeach",40.577621,-73.961376
+"282","broadchannelah","IND","broadchannelah","Rockaway","BroadChannel",40.608382,-73.815925
+"283","broadchannelas",NA,"broadchannelah","","BroadChannel",40.608382,-73.815925
+"284","broadstjz","BMT","broadstjz","Nassau","BroadSt",40.706476,-74.011056
+"285","broadwayg","IND","broadwayg","Crosstown","Broadway",40.706092,-73.950308
+"286","broadwaynq","BMT","broadwaynq","Astoria","Broadway",40.76182,-73.925508
+"287","74efmr7","IRT","74efmr7","Flushing","Broadway-74thSt",40.746848,-73.891394
+"288","747efmr",NA,"74efmr7","","Broadway-74thSt",40.746848,-73.891394
+"289","rooseveltaveefmr7",NA,"74efmr7","","Broadway-74thSt",40.746848,-73.891394
+"290","broadwayjunction-eastnewyorkacjl","IND","broadwayjunction-eastnewyorkacjl","Fulton","BroadwayJunction-EastNewYork",40.678334,-73.905316
+"291","broadway-lafayettestbdfm6","IND","broadway-lafayettestbdfm6","6 Avenue","Broadway-LafayetteSt",40.725297,-73.996204
+"292","broadway/lafaybdfq6",NA,"broadway-lafayettestbdfm6","","Broadway-LafayetteSt",40.725297,-73.996204
+"293","broadway-nassauacjz2345","IND","broadway-nassauacjz2345","8 Avenue","Broadway-Nassau",40.710197,-74.007691
+"294","bronxparkeast25","IRT","bronxparkeast25","White Plains Road","BronxParkEast",40.848828,-73.868457
+"295","brookav6","IRT","brookav6","Pelham","BrookAv",40.807566,-73.91924
+"296","brookave6",NA,"brookav6","","BrookAv",40.807566,-73.91924
+"297","brooklynbridge-cityhalljz456","IRT","brooklynbridge-cityhalljz456","Lexington","BrooklynBridge-CityHall",40.711824,-74.005057
+"298","brooklynbridge456jz",NA,"brooklynbridge-cityhalljz456","","BrooklynBridge-CityHall",40.713813,-74.003907
+"299","buhreav6","IRT","buhreav6","Pelham","BuhreAv",40.84681,-73.832569
+"300","burkeav25","IRT","burkeav25","White Plains Road","BurkeAv",40.871356,-73.867164
+"301","burkeave25",NA,"burkeav25","","BurkeAv",40.871356,-73.867164
+"302","burnsideav4","IRT","burnsideav4","Jerome","BurnsideAv",40.853453,-73.907684
+"303","burnsideave4",NA,"burnsideav4","","BurnsideAv",40.853453,-73.907684
+"304","bushwickavl","BMT","bushwickavl","Canarsie","BushwickAv",40.682829,-73.905249
+"305","bushwickavel",NA,"bushwickavl","","BushwickAv",40.682829,-73.905249
+"306","canalstjnqrz6","BMT","canalstjnqrz6","Nassau","CanalSt",40.718092,-73.999892
+"307","canalstace","IND","canalstace","8 Avenue","CanalSt",40.720824,-74.005229
+"308","canalst1","IRT","canalst1","Broadway-7th Ave","CanalSt",40.722854,-74.006277
+"309","canalst(ul)jnqrz6","BMT","canalst(ul)jnqrz6","Broadway","CanalSt(UL)",40.719527,-74.001775
+"310","canarsie-rockawayparkwayl","BMT","canarsie-rockawayparkwayl","Canarsie","Canarsie-RockawayParkway",40.645757,-73.9025
+"311","carrollstfg","IND","carrollstfg","6 Avenue","CarrollSt",40.680303,-73.995048
+"312","castlehillav6","IRT","castlehillav6","Pelham","CastleHillAv",40.834255,-73.851222
+"313","castlehillave6",NA,"castlehillav6","","CastleHillAv",40.834255,-73.851222
+"314","110bc","IND","110bc","8 Avenue","CathedralParkway-110thSt",40.800605,-73.958158
+"315","1101","IRT","1101","Broadway-7th Ave","CathedralParkway-110thSt",40.803967,-73.966847
+"316","centralavm","BMT","centralavm","Myrtle","CentralAv",40.697857,-73.927397
+"317","centralavem",NA,"centralavm","","CentralAv",40.697857,-73.927397
+"318","chambersstjz456","BMT","chambersstjz456","Nassau","ChambersSt",40.713243,-74.003401
+"319","chambersstace23","IND","chambersstace23","8 Avenue","ChambersSt",40.714111,-74.008585
+"320","chambersst123","IRT","chambersst123","Broadway-7th Ave","ChambersSt",40.715478,-74.009266
+"321","chaunceystjz","BMT","chaunceystjz","Broadway Jamaica","ChaunceySt",40.682893,-73.910456
+"322","christopherst1","IRT","christopherst1","Broadway-7th Ave","ChristopherSt",40.733422,-74.002906
+"323","churchavf","IND","churchavf","6 Avenue","ChurchAv",40.644041,-73.979678
+"324","churchavefg",NA,"churchavf","","ChurchAv",40.644041,-73.979678
+"325","churchavbq","BMT","churchavbq","Brighton","ChurchAv",40.650527,-73.962982
+"326","churchavebq",NA,"churchavbq","","ChurchAv",40.650527,-73.962982
+"327","churchav25","IRT","churchav25","Nostrand","ChurchAv",40.650843,-73.949575
+"328","churchave25",NA,"churchav25","","ChurchAv",40.650843,-73.949575
+"329","cityhallr","BMT","cityhallr","Broadway","CityHall",40.713282,-74.006978
+"330","clarkst23","IRT","clarkst23","Clark","ClarkSt",40.697466,-73.993086
+"331","classonavg","IND","classonavg","Crosstown","ClassonAv",40.688873,-73.96007
+"332","classonaveg",NA,"classonavg","","ClassonAv",40.688873,-73.96007
+"333","clevelandstj","BMT","clevelandstj","Broadway Jamaica","ClevelandSt",40.679947,-73.884639
+"334","clinton&washingtonavsc","IND","clinton&washingtonavsc","Fulton","Clinton&WashingtonAvs",40.683263,-73.965838
+"335","clinton-washingtonavsg","IND","clinton-washingtonavsg","Crosstown","Clinton-WashingtonAvs",40.688089,-73.966839
+"336","clinton-washavc",NA,"clinton-washingtonavsg","","Clinton-WashingtonAvs",40.688089,-73.966839
+"337","clinton-washavg",NA,"clinton-washingtonavsg","","Clinton-WashingtonAvs",40.688089,-73.966839
+"338","cortelyourdbq","BMT","cortelyourdbq","Brighton","CortelyouRd",40.640927,-73.963891
+"339","cortelyouroadbq",NA,"cortelyourdbq","","CortelyouRd",40.640927,-73.963891
+"340","cortlandtstr","BMT","cortlandtstr","Broadway","CortlandtSt",40.710668,-74.011029
+"341","courtstr2345","BMT","courtstr2345","Broadway","CourtSt",40.6941,-73.991777
+"342","crescentstjz","BMT","crescentstjz","Broadway Jamaica","CrescentSt",40.683194,-73.873785
+"343","cypressav6","IRT","cypressav6","Pelham","CypressAv",40.805368,-73.914042
+"344","cypressave6",NA,"cypressav6","","CypressAv",40.805368,-73.914042
+"345","cypresshillsj","BMT","cypresshillsj","Broadway Jamaica","CypressHills",40.689941,-73.87255
+"346","dekalbavbqr","BMT","dekalbavbqr","4 Avenue","DeKalbAv",40.690635,-73.981824
+"347","dekalbavebdnqr",NA,"dekalbavbqr","","DeKalbAv",40.690635,-73.981824
+"348","dekalbavel",NA,"dekalbavbqr","","DeKalbAv",40.690635,-73.981824
+"349","dekalbavl","BMT","dekalbavl","Canarsie","DeKalbAv",40.703811,-73.918425
+"350","delanceystfjmz","IND","delanceystfjmz","6 Avenue","DelanceySt",40.718611,-73.988114
+"351","ditmarsblvdnq","BMT","ditmarsblvdnq","Astoria","DitmarsBlvd",40.775036,-73.912034
+"352","ditmasavf","IND","ditmasavf","Culver","DitmasAv",40.636119,-73.978172
+"353","ditmasavef",NA,"ditmasavf","","DitmasAv",40.636119,-73.978172
+"354","dyckmanst1","IRT","dyckmanst1","Broadway-7th Ave","DyckmanSt",40.860531,-73.925536
+"355","200a","IND","200a","8 Avenue","DyckmanSt-200thSt",40.865491,-73.927271
+"356","105l","BMT","105l","Canarsie","East105thSt",40.650573,-73.899485
+"357","1436","IRT","1436","Pelham","East143rdSt-StMary'sSt",40.808719,-73.907657
+"358","1496","IRT","1496","Pelham","East149thSt",40.812118,-73.904098
+"359","18025","IRT","18025","White Plains Road","East180thSt",40.841894,-73.873488
+"361","eastbroadwayf","IND","eastbroadwayf","6 Avenue","EastBroadway",40.713715,-73.990173
+"362","eastchester-dyreav5","IRT","eastchester-dyreav5","Dyre Av","Eastchester-DyreAv",40.8883,-73.830834
+"363","dyreave5",NA,"eastchester-dyreav5","","Eastchester-DyreAv",40.8883,-73.830834
+"364","easternparkway-brooklynmuseum23","IRT","easternparkway-brooklynmuseum23","Eastern Parkway","EasternParkway-BrooklynMuseum",40.671987,-73.964375
+"365","easternpkwy23",NA,"easternparkway-brooklynmuseum23","","EasternParkway-BrooklynMuseum",40.671987,-73.964375
+"366","easttremontav-westfarmssq25","IRT","easttremontav-westfarmssq25","White Plains Road","EastTremontAv-WestFarmsSq",40.840295,-73.880049
+"367","elderav6","IRT","elderav6","Pelham","ElderAv",40.828584,-73.879159
+"368","elderave6",NA,"elderav6","","ElderAv",40.828584,-73.879159
+"369","75jz","BMT","75jz","Broadway Jamaica","EldertsLane-75thSt",40.691324,-73.867139
+"370","elmhurstavmr","IND","elmhurstavmr","Queens Boulevard","ElmhurstAv",40.742454,-73.882017
+"371","elmhurstavemr",NA,"elmhurstavmr","","ElmhurstAv",40.742454,-73.882017
+"372","essexstfjmz","BMT","essexstfjmz","Nassau","EssexSt",40.718315,-73.987437
+"373","euclidavac","IND","euclidavac","Fulton","EuclidAv",40.675377,-73.872106
+"374","euclidaveac",NA,"euclidavac","","EuclidAv",40.675377,-73.872106
+"375","farrockaway-mottava","IND","farrockaway-mottava","Rockaway","FarRockaway-MottAv",40.603995,-73.755405
+"376","farrockawaya",NA,"farrockaway-mottava","","FarRockaway-MottAv",40.603995,-73.755405
+"377","697","IRT","697","Flushing","FiskAv-69thSt",40.746325,-73.896403
+"379","flatbushav-brooklyncollege25","IRT","flatbushav-brooklyncollege25","Nostrand","FlatbushAv-BrooklynCollege",40.632836,-73.947642
+"380","flatbushave25",NA,"flatbushav-brooklyncollege25","","FlatbushAv-BrooklynCollege",40.632836,-73.947642
+"381","flushingavjm","BMT","flushingavjm","Broadway Jamaica","FlushingAv",40.70026,-73.941126
+"382","flushingavejm",NA,"flushingavjm","","FlushingAv",40.70026,-73.941126
+"383","flushingavg","IND","flushingavg","Crosstown","FlushingAv",40.700377,-73.950234
+"384","flushingaveg",NA,"flushingavg","","FlushingAv",40.700377,-73.950234
+"385","flushing-mainst7","IRT","flushing-mainst7","Flushing","Flushing-MainSt",40.7596,-73.83003
+"386","mainst7",NA,"flushing-mainst7","","Flushing-MainSt",40.7596,-73.83003
+"387","fordhamrdbd","IND","fordhamrdbd","Concourse","FordhamRd",40.861296,-73.897749
+"388","fordhamroadbd",NA,"fordhamrdbd","","FordhamRd",40.861296,-73.897749
+"389","fordhamrd4","IRT","fordhamrd4","Jerome","FordhamRd",40.862803,-73.901034
+"390","fordhamroad4",NA,"fordhamrd4","","FordhamRd",40.862803,-73.901034
+"391","forestavm","BMT","forestavm","Myrtle","ForestAv",40.704423,-73.903077
+"392","forestavem",NA,"forestavm","","ForestAv",40.704423,-73.903077
+"393","71efmr","IND","71efmr","Queens Boulevard","ForestHills-71stAv",40.721691,-73.844521
+"394","85j","BMT","85j","Broadway Jamaica","ForestParkway-85thSt",40.692435,-73.86001
+"395","forthamiltonparkwayn","BMT","forthamiltonparkwayn","Sea Beach","FortHamiltonParkway",40.631386,-74.005351
+"396","fthamiltonpkyn",NA,"forthamiltonparkwayn","","FortHamiltonParkway",40.631386,-74.005351
+"397","forthamiltonparkwayd","BMT","forthamiltonparkwayd","West End","FortHamiltonParkway",40.640914,-73.994304
+"398","fthamiltonpkyd",NA,"forthamiltonparkwayd","","FortHamiltonParkway",40.640914,-73.994304
+"399","fthamiltonpkyfg",NA,"forthamiltonparkwayd","","FortHamiltonParkway",40.640914,-73.994304
+"400","forthamiltonparkwayf","IND","forthamiltonparkwayf","6 Avenue","FortHamiltonParkway",40.650782,-73.975776
+"401","franklinavfs2345","IRT","franklinavfs2345","Eastern Parkway","FranklinAv",40.670682,-73.958131
+"402","franklinave2345s",NA,"franklinavfs2345","","FranklinAv",40.670682,NA
+"403","franklinavafs","BMT","franklinavafs","Franklin","FranklinAv",40.680596,-73.955827
+"404","franklinavacfs","IND","franklinavacfs","Fulton","FranklinAv",40.68138,-73.956848
+"405","franklinaveacs",NA,"franklinavacfs","","FranklinAv",40.68138,-73.956848
+"406","franklinst1","IRT","franklinst1","Broadway-7th Ave","FranklinSt",40.719318,-74.006886
+"407","freemanst25","IRT","freemanst25","White Plains Road","FreemanSt",40.829993,-73.891865
+"408","freshpondrdm","BMT","freshpondrdm","Myrtle","FreshPondRd",40.706186,-73.895877
+"409","freshpondroadm",NA,"freshpondrdm","","FreshPondRd",40.706186,-73.895877
+"410","fultonstg","IND","fultonstg","Crosstown","FultonSt",40.687119,-73.975375
+"411","fultonstacjz2345","IRT","fultonstacjz2345","Clark","FultonSt",40.709416,-74.006571
+"412","fultonst2345acjz",NA,"fultonstacjz2345","","FultonSt",40.710368,-74.009509
+"413","gatesavjz","BMT","gatesavjz","Broadway Jamaica","GatesAv",40.68963,-73.92227
+"414","gatesavejz",NA,"gatesavjz","","GatesAv",40.68963,-73.92227
+"415","grahamavl","BMT","grahamavl","Canarsie","GrahamAv",40.714565,-73.944053
+"416","grahamavel",NA,"grahamavl","","GrahamAv",40.714565,-73.944053
+"417","grandarmyplaza23","IRT","grandarmyplaza23","Eastern Parkway","GrandArmyPlaza",40.675235,-73.971046
+"418","grandarmyplaz23",NA,"grandarmyplaza23","","GrandArmyPlaza",40.675235,-73.971046
+"419","grandav-newtownmr","IND","grandav-newtownmr","Queens Boulevard","GrandAv-Newtown",40.737015,-73.877223
+"420","grandav-newtonmr",NA,"grandav-newtownmr","","GrandAv-Newtown",40.737015,-73.877223
+"421","grandcentralgs4567","IRT","grandcentralgs4567","42nd St Shuttle","GrandCentral",40.752769,-73.979189
+"422","42gs4567","IRT","42gs4567","Flushing","GrandCentral-42ndSt",40.751431,-73.976041
+"423","424567s",NA,"42gs4567","","GrandCentral-42ndSt",40.751776,-73.976848
+"424","grandstl","BMT","grandstl","Canarsie","GrandSt",40.711926,-73.94067
+"425","grandstbd","IND","grandstbd","6 Avenue","GrandSt",40.718267,-73.993753
+"426","grantava","IND","grantava","Liberty","GrantAv",40.677044,-73.86505
+"427","grantavea",NA,"grantava","","GrantAv",40.677044,-73.86505
+"428","greenpointavg","IND","greenpointavg","Crosstown","GreenpointAv",40.731352,-73.954449
+"429","greenpointaveg",NA,"greenpointavg","","GreenpointAv",40.731352,-73.954449
+"430","gunhillrd5","IRT","gunhillrd5","Dyre Av","GunHillRd",40.869526,-73.846384
+"431","gunhillroad5",NA,"gunhillrd5","","GunHillRd",40.869526,-73.846384
+"432","gunhillrd25","IRT","gunhillrd25","White Plains Road","GunHillRd",40.87785,-73.866256
+"433","gunhillroad25",NA,"gunhillrd25","","GunHillRd",40.87785,-73.866256
+"434","halseystj","BMT","halseystj","Broadway Jamaica","HalseySt",40.68637,-73.916559
+"435","halseystl","BMT","halseystl","Canarsie","HalseySt",40.695602,-73.904084
+"436","1483","IRT","1483","Lenox","Harlem-148thSt",40.82388,-73.93647
+"437","hewesstjm","BMT","hewesstjm","Broadway Jamaica","HewesSt",40.70687,-73.953431
+"438","highstacjz2345","IND","highstacjz2345","8 Avenue","HighSt",40.699337,-73.990531
+"439","highstac",NA,"highstacjz2345","","HighSt",40.699337,-73.990531
+"440","houstonst1","IRT","houstonst1","Broadway-7th Ave","HoustonSt",40.728251,-74.005367
+"441","howardbeacha","IND","howardbeacha","Rockaway","HowardBeach",40.660476,-73.830301
+"442","howardbch-jfka",NA,"howardbeacha","","HowardBeach",40.660476,-73.830301
+"443","jfkhowardbcha",NA,"howardbeacha","","HowardBeach",40.660476,-73.830301
+"444","hoyt&schermerhornacg","IND","hoyt&schermerhornacg","Fulton","Hoyt&Schermerhorn",40.688484,-73.985001
+"445","hoyt/schermeracg",NA,"hoyt&schermerhornacg","","Hoyt&Schermerhorn",40.688484,-73.985001
+"446","hoytst23","IRT","hoytst23","Eastern Parkway","HoytSt",40.690545,-73.985065
+"447","hunterspoint7","IRT","hunterspoint7","Flushing","HuntersPoint",40.742216,-73.948916
+"448","huntersptave7",NA,"hunterspoint7","","HuntersPoint",40.742216,-73.948916
+"449","huntspointav6","IRT","huntspointav6","Pelham","HuntsPointAv",40.820948,-73.890549
+"450","huntspointave6",NA,"huntspointav6","","HuntsPointAv",40.820948,-73.890549
+"451","intervaleav25","IRT","intervaleav25","White Plains Road","IntervaleAv",40.822181,-73.896736
+"452","207a","IND","207a","8 Avenue","Inwood-207thSt",40.868072,-73.919899
+"453","jacksonav25","IRT","jacksonav25","White Plains Road","JacksonAv",40.81649,-73.907807
+"454","jacksonave25",NA,"jacksonav25","","JacksonAv",40.81649,-73.907807
+"455","jacksonheights-rooseveltaveefmr7","IND","jacksonheights-rooseveltaveefmr7","Queens Boulevard","JacksonHeights-RooseveltAve",40.746644,-73.891338
+"456","jamaicacenterejz",NA,"jamaicacenterejz",NA,"jamaica center",40.70215903,-73.80086839
+"457","179f","IND","179f","Queens Boulevard","Jamaica-179thSt",40.712646,-73.783817
+"458","jamaica-vanwycke","IND","jamaica-vanwycke","Archer Av","Jamaica-VanWyck",40.702566,-73.816859
+"459","jamaica-vanwyce",NA,"jamaica-vanwycke","","Jamaica-VanWyck",40.702566,-73.816859
+"460","jayst-boroughhallacfr","IND","jayst-boroughhallacfr","Fulton","JaySt-BoroughHall",40.692338,-73.987342
+"461","jayst-metrotecacf",NA,"jayst-boroughhallacfr","","JaySt-BoroughHall",40.692338,-73.987342
+"462","jayst-metrotecr",NA,"jayst-boroughhallacfr","","JaySt-BoroughHall",40.692338,-73.987342
+"463","jeffersonstl","BMT","jeffersonstl","Canarsie","JeffersonSt",40.706607,-73.922913
+"464","junctionblvd7","IRT","junctionblvd7","Flushing","JunctionBlvd",40.749145,-73.869527
+"465","broadway-enyacjlz",NA,"junctionblvd7","","JunctionBlvd",40.749145,-73.869527
+"466","juniusst3","IRT","juniusst3","New Lots","JuniusSt",40.663515,-73.902447
+"467","kewgardens-unionturnpikeef","IND","kewgardens-unionturnpikeef","Queens Boulevard","KewGardens-UnionTurnpike",40.714441,-73.831008
+"468","uniontpk-kewgef",NA,"kewgardens-unionturnpikeef","","KewGardens-UnionTurnpike",40.714441,-73.831008
+"469","kingsbridgerdbd","IND","kingsbridgerdbd","Concourse","KingsbridgeRd",40.866978,-73.893509
+"470","kingsbridgerd4","IRT","kingsbridgerd4","Jerome","KingsbridgeRd",40.86776,-73.897174
+"471","kingshighwayf","IND","kingshighwayf","Culver","KingsHighway",40.603217,-73.972361
+"472","kingshighwayn","BMT","kingshighwayn","Sea Beach","KingsHighway",40.603923,-73.980353
+"473","kingshighwaybq","BMT","kingshighwaybq","Brighton","KingsHighway",40.60867,-73.957734
+"474","kingstonav3","IRT","kingstonav3","Eastern Parkway","KingstonAv",40.669399,-73.942161
+"475","kingstonave3",NA,"kingstonav3","","KingstonAv",40.669399,-73.942161
+"476","kingston-throopac","IND","kingston-throopac","Fulton","Kingston-Throop",40.679921,-73.940858
+"477","kingston-throopc",NA,"kingston-throopac","","Kingston-Throop",40.679921,-73.940858
+"478","knickerbockeravm","BMT","knickerbockeravm","Myrtle","KnickerbockerAv",40.698664,-73.919711
+"479","knickerbockerm",NA,"knickerbockeravm","","KnickerbockerAv",40.698664,-73.919711
+"480","kosciuskostj","BMT","kosciuskostj","Broadway Jamaica","KosciuskoSt",40.693342,-73.928814
+"481","kosciuszkostj",NA,"kosciuskostj","","KosciuskoSt",40.693342,-73.928814
+"482","lafayetteavc","IND","lafayetteavc","Fulton","LafayetteAv",40.686113,-73.973946
+"483","lafayetteavec",NA,"lafayetteavc","","LafayetteAv",40.686113,-73.973946
+"484","lawrencestacfr","BMT","lawrencestacfr","Broadway","LawrenceSt",40.69218,-73.985942
+"485","leffertsblvda","IND","leffertsblvda","Liberty","LeffertsBlvd",40.685951,-73.825798
+"486","lexingtonavnqr456","BMT","lexingtonavnqr456","Broadway","LexingtonAv",40.76266,-73.967258
+"487","lexingtonavf","IND","lexingtonavf","63rd Street","LexingtonAv",40.764627,-73.96611
+"488","lexingtonavef",NA,"lexingtonavf","","LexingtonAv",40.764627,-73.96611
+"489","lexingtonavenqr456",NA,"lexingtonavf","","LexingtonAv",40.764627,-73.96611
+"490","53em6","IND","53em6","Queens Boulevard","LexingtonAv-53rdSt",40.757552,-73.969055
+"491","516",NA,"53em6","","LexingtonAv-53rdSt",40.757552,-73.969055
+"492","libertyavac","IND","libertyavac","Fulton","LibertyAv",40.674542,-73.896548
+"493","libertyavec",NA,"libertyavac","","LibertyAv",40.674542,-73.896548
+"494","527","IRT","527","Flushing","LincolnAv-52ndSt",40.744149,-73.912549
+"496","livoniaavl","BMT","livoniaavl","Canarsie","LivoniaAv",40.664038,-73.900571
+"497","livoniaavel",NA,"livoniaavl","","LivoniaAv",40.664038,-73.900571
+"498","longislandcity-courtsquareg","IND","longislandcity-courtsquareg","Crosstown","LongIslandCity-CourtSquare",40.746554,-73.943832
+"499","longwoodav6","IRT","longwoodav6","Pelham","LongwoodAv",40.816104,-73.896435
+"500","longwoodave6",NA,"longwoodav6","","LongwoodAv",40.816104,-73.896435
+"501","lorimerstjm","BMT","lorimerstjm","Broadway Jamaica","LorimerSt",40.703869,-73.947408
+"502","lorimerstgl","BMT","lorimerstgl","Canarsie","LorimerSt",40.714063,-73.950275
+"503","lorimerstlg",NA,"lorimerstgl","","LorimerSt",40.714063,-73.950275
+"504","407","IRT","407","Flushing","LowerySt-40thSt",40.743781,-73.924016
+"505","2251","IRT","2251","Broadway-7th Ave","MarbleHill-225thSt",40.874561,-73.909831
+"506","marcyavjmz","BMT","marcyavjmz","Broadway Jamaica","MarcyAv",40.708359,-73.957757
+"507","marcyavejmz",NA,"marcyavjmz","","MarcyAv",40.708359,-73.957757
+"508","metropolitanavm","BMT","metropolitanavm","Myrtle","MetropolitanAv",40.711396,-73.889601
+"509","metropolitanavgl","IND","metropolitanavgl","Crosstown","MetropolitanAv",40.712792,-73.951418
+"510","mets-willetspoint7","IRT","mets-willetspoint7","Flushing","Mets-WilletsPoint",40.754622,-73.845625
+"511","mets-willetspt7",NA,"mets-willetspoint7","","Mets-WilletsPoint",40.754622,-73.845625
+"512","middletownrd6","IRT","middletownrd6","Pelham","MiddletownRd",40.843863,-73.836322
+"513","middletownroad6",NA,"middletownrd6","","MiddletownRd",40.843863,-73.836322
+"514","montroseavl","BMT","montroseavl","Canarsie","MontroseAv",40.707739,-73.93985
+"515","montroseavel",NA,"montroseavl","","MontroseAv",40.707739,-73.93985
+"516","morganavl","BMT","morganavl","Canarsie","MorganAv",40.706152,-73.933147
+"517","morganavel",NA,"morganavl","","MorganAv",40.706152,-73.933147
+"518","morrisonav-soundviewav6","IRT","morrisonav-soundviewav6","Pelham","MorrisonAv-SoundviewAv",40.829521,-73.874516
+"519","morrisonave6",NA,"morrisonav-soundviewav6","","MorrisonAv-SoundviewAv",40.829521,-73.874516
+"520","morrispark5","IRT","morrispark5","Dyre Av","MorrisPark",40.854364,-73.860495
+"521","mosholuparkway4","IRT","mosholuparkway4","Jerome","MosholuParkway",40.87975,-73.884655
+"522","rockawaypkyl",NA,"rockawaypkyl",NA,"MTA Canarsie/Rockaway Pkwy. L",40.64685293,-73.90157885
+"523","mtedenav4","IRT","mtedenav4","Jerome","MtEdenAv",40.844434,-73.914685
+"524","mtedenave4",NA,"mtedenav4","","MtEdenAv",40.844434,-73.914685
+"525","myrtleavjmz","BMT","myrtleavjmz","Broadway Jamaica","MyrtleAv",40.697207,-73.935657
+"526","myrtleavejmz",NA,"myrtleavjmz","","MyrtleAv",40.697207,-73.935657
+"527","myrtleavlm","BMT","myrtleavlm","Canarsie","MyrtleAv",40.699814,-73.911586
+"528","myrtleavelm",NA,"myrtleavlm","","MyrtleAv",40.699814,-73.911586
+"529","myrtle-willoughbyavsg","IND","myrtle-willoughbyavsg","Crosstown","Myrtle-WilloughbyAvs",40.694568,-73.949046
+"530","myrtle-willoughg",NA,"myrtle-willoughbyavsg","","Myrtle-WilloughbyAvs",40.694568,-73.949046
+"531","4dfgmnr",NA,NA,"",NA,NA,NA
+"532","91",NA,NA,"",NA,NA,NA
+"533","crownhts-utica34",NA,"",NA,NA,NA,NA
+"534","eldertslanejz",NA,"",NA,NA,NA,NA
+"535","harrison1",NA,"",NA,NA,NA,NA
+"536","neckroadbq",NA,"",NA,NA,NA,NA
+"537","princest-b'waynr",NA,"",NA,NA,NA,NA
+"538","rit-manhattanr",NA,"",NA,NA,NA,NA
+"539","rit-rooseveltr",NA,"",NA,NA,NA,NA
+"540","st.george1",NA,"",NA,NA,NA,NA
+"541","tompkinsville1",NA,"",NA,NA,NA,NA
+"542","vanwyckblvdef",NA,"",NA,NA,NA,NA
+"543","nassauavg","IND","nassauavg","Crosstown","NassauAv",40.724635,-73.951277
+"544","neckrdbq","BMT","neckrdbq","Brighton","NeckRd",40.595246,-73.955161
+"545","neptuneav-vansiclenf","IND","neptuneav-vansiclenf","Culver","NeptuneAv-VanSiclen",40.581011,-73.974574
+"546","neptuneavef",NA,"neptuneav-vansiclenf","","NeptuneAv-VanSiclen",40.581011,-73.974574
+"547","nereidave25",NA,"nereidave25",NA,"nereid ave",40.8984304,-73.85434628
+"548","nevinsst2345","IRT","nevinsst2345","Eastern Parkway","NevinsSt",40.688246,-73.980492
+"549","newkirkavbq","BMT","newkirkavbq","Brighton","NewkirkAv",40.635082,-73.962793
+"550","newkirkplazabq",NA,"newkirkavbq","","NewkirkAv",40.635082,-73.962793
+"551","newkirkav25","IRT","newkirkav25","Nostrand","NewkirkAv",40.639967,-73.948411
+"552","newkirkave25",NA,"newkirkav25","","NewkirkAv",40.639967,-73.948411
+"553","newlotsavl","BMT","newlotsavl","Canarsie","NewLotsAv",40.658733,-73.899232
+"554","newlotsavel",NA,"newlotsavl","","NewLotsAv",40.658733,-73.899232
+"555","newlotsav3","IRT","newlotsav3","New Lots","NewLotsAv",40.666235,-73.884079
+"556","newlotsave3",NA,"newlotsav3","","NewLotsAv",40.666235,-73.884079
+"557","newutrechtavdn","BMT","newutrechtavdn","Sea Beach","NewUtrechtAv",40.624842,-73.996353
+"558","newutrechtavend",NA,"newutrechtavdn","","NewUtrechtAv",40.624842,-73.996353
+"559","northernblvdmr","IND","northernblvdmr","Queens Boulevard","NorthernBlvd",40.752885,-73.906006
+"560","205d","IND","205d","Concourse","Norwood-205thSt",40.874811,-73.878855
+"561","norwoodavjz","BMT","norwoodavjz","Broadway Jamaica","NorwoodAv",40.68141,-73.880039
+"562","norwoodavejz",NA,"norwoodavjz","","NorwoodAv",40.68141,-73.880039
+"563","nostrandav3","IRT","nostrandav3","Eastern Parkway","NostrandAv",40.669847,-73.950466
+"564","nostrandave3",NA,"nostrandav3","","NostrandAv",40.669847,-73.950466
+"565","nostrandavac","IND","nostrandavac","Fulton","NostrandAv",40.680438,-73.950426
+"566","nostrandaveac",NA,"nostrandavac","","NostrandAv",40.680438,-73.950426
+"567","oceanparkwayq","BMT","oceanparkwayq","Brighton","OceanParkway",40.576312,-73.968501
+"568","pacificstbqdnr2345","BMT","pacificstbqdnr2345","4 Avenue","PacificSt",40.683666,-73.97881
+"569","1776","IRT","1776","Pelham","Parkchester-East177thSt",40.833226,-73.860816
+"570","parkplacefs","BMT","parkplacefs","Franklin","ParkPlace",40.674772,-73.957624
+"571","parkplaces",NA,"parkplacefs","","ParkPlace",40.674772,-73.957624
+"572","parkplaceace123","IRT","parkplaceace123","Clark","ParkPlace",40.713051,-74.008811
+"573","parkplace23ace",NA,"parkplaceace123","","ParkPlace",40.713051,-74.008811
+"574","parksideavbq","BMT","parksideavbq","Brighton","ParksideAv",40.655292,-73.961495
+"575","parksideavebq",NA,"parksideavbq","","ParksideAv",40.655292,-73.961495
+"576","parsonsblvdf","IND","parsonsblvdf","Queens Boulevard","ParsonsBlvd",40.707564,-73.803326
+"577","parsonsblvd-archerav-jamaicacenterejz","IND","parsonsblvd-archerav-jamaicacenterejz","Archer Av","ParsonsBlvd-ArcherAv-JamaicaCenter",40.702147,-73.801109
+"578","thirtyst1",NA,"281","","path",40.747215,-73.993365
+"579","exchangeplace1",NA,"",NA,"path",NA,NA
+"580","grovestreet1",NA,"",NA,"path",NA,NA
+"581","9dfgmnr",NA,NA,"","path/metro rail",NA,NA
+"582","city/bus1",NA,"",NA,"path/metro rail",NA,NA
+"583","journalsquare1",NA,"",NA,"path/metro rail",NA,NA
+"584","lackawanna1",NA,"",NA,"path/metro rail",NA,NA
+"585","newarkbmbw1",NA,"",NA,"path/metro rail",NA,NA
+"586","newarkc1",NA,"",NA,"path/metro rail",NA,NA
+"587","newarkhmhe1",NA,"",NA,"path/metro rail",NA,NA
+"588","newarkhwbmebe1",NA,"",NA,"path/metro rail",NA,NA
+"589","pavonia/newport1",NA,"",NA,"path/metro rail",NA,NA
+"590","thirtythirdst1",NA,"",NA,"path/metro rail",NA,NA
+"591","twentythirdst1",NA,"",NA,"path/metro rail",NA,NA
+"592","pelhambaypark6","IRT","pelhambaypark6","Pelham","PelhamBayPark",40.852462,-73.828121
+"593","pelhamparkway25","IRT","pelhamparkway25","White Plains Road","PelhamParkway",40.857192,-73.867615
+"594","pelhamparkway5","IRT","pelhamparkway5","Dyre Av","PelhamParkway",40.858985,-73.855359
+"595","pennsylvaniaav3","IRT","pennsylvaniaav3","New Lots","PennsylvaniaAv",40.664635,-73.894895
+"596","presidentst25","IRT","presidentst25","Nostrand","PresidentSt",40.667883,-73.950683
+"597","princestnr","BMT","princestnr","Broadway","PrinceSt",40.724329,-73.997702
+"598","prospectavr","BMT","prospectavr","4 Avenue","ProspectAv",40.665414,-73.992872
+"599","prospectaver",NA,"prospectavr","","ProspectAv",40.665414,-73.992872
+"600","prospectav25","IRT","prospectav25","White Plains Road","ProspectAv",40.819585,-73.90177
+"601","prospectave25",NA,"prospectav25","","ProspectAv",40.819585,-73.90177
+"602","prospectparkbqfs","BMT","prospectparkbqfs","Brighton","ProspectPark",40.661614,-73.962246
+"603","prospectparkbqs",NA,"prospectparkbqfs","","ProspectPark",40.661614,-73.962246
+"604","15f","IND","15f","6 Avenue","ProspectPark-15St",40.660365,-73.979493
+"605","15fg",NA,"15f",NA,"ProspectPark-15St",40.660365,-73.979493
+"606","queensboroplazanq7","IRT","queensboroplazanq7","Flushing","QueensboroPlaza",40.750582,-73.940202
+"607","queensboroplz7nq",NA,"queensboroplazanq7","","QueensboroPlaza",40.750582,-73.940202
+"608","queensplazaemr","IND","queensplazaemr","Queens Boulevard","QueensPlaza",40.748973,-73.937243
+"609","ralphavac","IND","ralphavac","Fulton","RalphAv",40.678822,-73.920786
+"610","ralphavec",NA,"ralphavac","","RalphAv",40.678822,-73.920786
+"611","337","IRT","337","Flushing","RawsonSt-33rdSt",40.744587,-73.930997
+"612","rectorstr","BMT","rectorstr","Broadway","RectorSt",40.70722,-74.013342
+"613","rectorst1","IRT","rectorst1","Broadway-7th Ave","RectorSt",40.707513,-74.013783
+"614","rockawayav3","IRT","rockawayav3","New Lots","RockawayAv",40.662549,-73.908946
+"615","rockawayave3",NA,"rockawayav3","","RockawayAv",40.662549,-73.908946
+"616","rockawayavac","IND","rockawayavac","Fulton","RockawayAv",40.67834,-73.911946
+"617","rockawayavec",NA,"rockawayavac","","RockawayAv",40.67834,-73.911946
+"618","rockawayblvda","IND","rockawayblvda","Liberty","RockawayBlvd",40.680429,-73.843853
+"619","116h","IND","116h","Rockaway","RockawayPark-Beach116th",40.580903,-73.835592
+"620","116as",NA,"116h",NA,"RockawayPark-Beach116th",40.580903,-73.835592
+"621","rooseveltislandf","IND","rooseveltislandf","63rd Street","RooseveltIsland",40.759145,-73.95326
+"622","rooseveltisf",NA,"rooseveltislandf","","RooseveltIsland",40.759145,-73.95326
+"623","saratogaav3","IRT","saratogaav3","New Lots","SaratogaAv",40.661453,-73.916327
+"624","saratogaave3",NA,"saratogaav3","","SaratogaAv",40.661453,-73.916327
+"625","senecaavm","BMT","senecaavm","Myrtle","SenecaAv",40.702762,-73.90774
+"626","senecaavem",NA,"senecaavm","","SenecaAv",40.702762,-73.90774
+"627","sheepsheadbaybq","BMT","sheepsheadbaybq","Brighton","SheepsheadBay",40.586896,-73.954155
+"628","shepherdavac","IND","shepherdavac","Fulton","ShepherdAv",40.67413,-73.88075
+"629","shepherdavec",NA,"shepherdavac","","ShepherdAv",40.67413,-73.88075
+"630","simpsonst25","IRT","simpsonst25","White Plains Road","SimpsonSt",40.824073,-73.893064
+"631","southferryr1","IRT","southferryr1","Broadway-7th Ave","SouthFerry",40.702068,-74.013664
+"632","southferry1r",NA,"southferryr1","","SouthFerry",40.702068,-74.013664
+"633","springst6","IRT","springst6","Lexington","SpringSt",40.722301,-73.997141
+"634","springstce","IND","springstce","8 Avenue","SpringSt",40.726227,-74.003739
+"635","steinwaystmr","IND","steinwaystmr","Queens Boulevard","SteinwaySt",40.756879,-73.92074
+"636","sterlingst25","IRT","sterlingst25","Nostrand","SterlingSt",40.662742,-73.95085
+"637","stillwellavdfnq","BMT","stillwellavdfnq","Coney Island","StillwellAv",40.577422,-73.981233
+"638","stillwellavedfnq",NA,"stillwellavdfnq","","StillwellAv",40.577422,-73.981233
+"639","stlawrenceav6","IRT","stlawrenceav6","Pelham","StLawrenceAv",40.831509,-73.867618
+"640","stlawrenceave6",NA,"stlawrenceav6","","StLawrenceAv",40.831509,-73.867618
+"641","sutphinblvdf","IND","sutphinblvdf","Queens Boulevard","SutphinBlvd",40.70546,-73.810708
+"642","sutphinblvd-archerav-jfkejz","IND","sutphinblvd-archerav-jfkejz","Archer Av","SutphinBlvd-ArcherAv-JFK",40.700486,-73.807969
+"643","1e",NA,"sutphinblvd-archerav-jfkejz",NA,"SutphinBlvd-ArcherAv-JFK",40.700486,-73.807969
+"644","sutphinblvdejz",NA,"sutphinblvd-archerav-jfkejz","","SutphinBlvd-ArcherAv-JFK",40.700486,-73.807969
+"645","sutterav3","IRT","sutterav3","New Lots","SutterAv",40.664717,-73.92261
+"646","sutterave3",NA,"sutterav3","","SutterAv",40.664717,-73.92261
+"647","sutteravl","BMT","sutteravl","Canarsie","SutterAv",40.669367,-73.901975
+"648","sutteravel",NA,"sutteravl","","SutterAv",40.669367,-73.901975
+"649","timessquareacenqrs1237","IRT","timessquareacenqrs1237","Broadway-7th Ave","TimesSquare",40.75529,-73.987495
+"650","timessquareacenqrgs1237","IRT","timessquareacenqrgs1237","42nd St Shuttle","TimesSquare",40.755983,-73.986229
+"652","421237acenqrs",NA,"42acenqrs1237","","TimesSquare-42ndSt",40.754672,-73.986754
+"653","42acengrs1237",NA,"42acenqrs1237","","TimesSquare-42ndSt",40.754672,-73.986754
+"654","tremontavbd","IND","tremontavbd","Concourse","TremontAv",40.85041,-73.905227
+"655","tremontavebd",NA,"tremontavbd","","TremontAv",40.85041,-73.905227
+"656","etremontave25",NA,"tremontavbd","","TremontAv",40.85041,-73.905227
+"657","unionsquarelnqr456","BMT","unionsquarelnqr456","Canarsie","UnionSquare",40.734789,-73.99073
+"658","unionstr","BMT","unionstr","4 Avenue","UnionSt",40.677316,-73.98311
+"659","uticaav34","IRT","uticaav34","Eastern Parkway","UticaAv",40.668897,-73.932942
+"660","uticaaveac",NA,"uticaav34","","UticaAv",40.668897,-73.932942
+"661","uticaavac","IND","uticaavac","Fulton","UticaAv",40.679364,-73.930729
+"662","2421","IRT","2421","Broadway-7th Ave","VanCortlandtPark-242ndSt",40.889248,-73.898583
+"663","2412",NA,"2421",NA,"VanCortlandtPark-242ndSt",40.889248,-73.898583
+"664","vansiclenav3","IRT","vansiclenav3","New Lots","VanSiclenAv",40.665449,-73.889395
+"665","vansiclenave3",NA,"vansiclenav3","","VanSiclenAv",40.665449,-73.889395
+"666","vansiclenavac","IND","vansiclenavac","Fulton","VanSiclenAv",40.67271,-73.890358
+"667","vansiclenavec",NA,"vansiclenavac","","VanSiclenAv",40.67271,-73.890358
+"668","vansiclenavjz","BMT","vansiclenavjz","Broadway Jamaica","VanSiclenAv",40.678024,-73.891688
+"669","vansiclenavejz",NA,"vansiclenavjz","","VanSiclenAv",40.678024,-73.891688
+"670","vernonblvd-jacksonav7","IRT","vernonblvd-jacksonav7","Flushing","VernonBlvd-JacksonAv",40.742626,-73.953581
+"671","vernon/jackson7",NA,"vernonblvd-jacksonav7","","VernonBlvd-JacksonAv",40.742626,-73.953581
+"672","24125","IRT","24125","White Plains Road","Wakefield-241stSt",40.903125,-73.85062
+"673","wallst23","IRT","wallst23","Clark","WallSt",40.706821,-74.0091
+"674","wallst45","IRT","wallst45","Lexington","WallSt",40.707557,-74.011862
+"675","4abcdefm","IND","4abcdefm","8 Avenue","West4thSt",40.732338,-74.000495
+"676","8fq","BMT","8fq","Coney Island","West8thSt",40.576127,-73.975939
+"677","westchestersquare-easttremontav6","IRT","westchestersquare-easttremontav6","Pelham","WestchesterSquare-EastTremontAv",40.839892,-73.842952
+"678","westchestersq6",NA,"westchestersquare-easttremontav6","","WestchesterSquare-EastTremontAv",40.839892,-73.842952
+"679","whitehallstr1","BMT","whitehallstr1","Broadway","WhitehallSt",40.703087,-74.012994
+"680","whitlockav6","IRT","whitlockav6","Pelham","WhitlockAv",40.826525,-73.886283
+"681","whitlockave6",NA,"whitlockav6","","WhitlockAv",40.826525,-73.886283
+"682","wilsonavl","BMT","wilsonavl","Canarsie","WilsonAv",40.688764,-73.904046
+"683","wilsonavel",NA,"wilsonavl","","WilsonAv",40.688764,-73.904046
+"684","winthropst25","IRT","winthropst25","Nostrand","WinthropSt",40.656652,-73.9502
+"685","woodhavenblvdjz","BMT","woodhavenblvdjz","Broadway Jamaica","WoodhavenBlvd",40.693879,-73.851576
+"686","forestparkwayj",NA,"woodhavenblvdjz","","WoodhavenBlvd",40.693879,-73.851576
+"687","woodhavenblvdmr","IND","woodhavenblvdmr","Queens Boulevard","WoodhavenBlvd",40.733106,-73.869229
+"688","woodlawn4","IRT","woodlawn4","Jerome","Woodlawn",40.886037,-73.878751
+"689","woodlawnroad4",NA,"woodlawn4","","Woodlawn",40.886037,-73.878751
+"690","617","IRT","617","Flushing","WoodsideAv-61stSt",40.74563,-73.902984
+"691","worldtradecenterace23","IND","worldtradecenterace23","8 Avenue","WorldTradeCenter",40.712582,-74.009781
+"692","worldtradectrace23",NA,"worldtradecenterace23","","WorldTradeCenter",40.712582,-74.009781
+"693","21",NA,"worldtradecenterace23","","WorldTradeCenter",40.712582,-74.009781
+"694","pathwtc1",NA,"worldtradecenterace23",NA,"WorldTradeCenter",40.712582,-74.009781
+"695","161bd4","IND","161bd4","Concourse","YankeeStadium-161stSt",40.827905,-73.925651
+"696","1614bd",NA,"161bd4",NA,"YankeeStadium-161stSt",40.827905,-73.925651
+"697","yorkstf","IND","yorkstf","6 Avenue","YorkSt",40.699743,-73.986885
+"698","zeregaav6","IRT","zeregaav6","Pelham","ZeregaAv",40.836488,-73.847036
+"699","16325",NA,"","","",NA,NA

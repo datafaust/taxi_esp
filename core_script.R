@@ -1,7 +1,8 @@
 #core script for creating dataset----------------------
-
+library(latticeExtra)
 library(data.table)
 library(fasttime)
+library(ggmap)
 #library(scizor)
 library(RODBC)
 library(zoo)
@@ -15,13 +16,14 @@ library(DMwR)
 library(lubridate)
 library(tidyr)
 TPEP2 = odbcConnect('TPEP2')
-
+options(scipen=999)
 
 cabinets = list(foursquare = "I:/COF/COF/_M3trics/external_useful_data/foursquare_data_2014-2016",
                 home = "C:/Users/lopezf/Desktop/regression_test/regression_test",
                 gas_scrape= "C:/Users/lopezf/Desktop/regression_test/regression_test/gas_data",
                 citibike = "C:/Users/lopezf/Desktop/regression_test/regression_test/citibike/citibike_geocoded",
-                mta = "C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data_geocoded_tz"
+                mta = "C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data_geocoded_tz",
+                git_home = "C:/Users/lopezf/Documents/R/R-3.3.1/library/taxi_esp"
 ) 
 
 
@@ -212,6 +214,10 @@ subway_trips[,date_zone_id:= paste0(DATE, "_",
                                      ,date_zone_id:= gsub("[^0-9]", "", date_zone_id)][
                                        ,timestamp:= paste(DATE, hour)]
 
+#source zone values------------------------------------------------------------------------
+setwd(cabinets$git_home)
+source("tz_centroid_builder.R")
+
 #foursquare commercial strenght---------------------------------------------------------------------------------------------------------------------
 setwd(cabinets$foursquare)
 
@@ -250,6 +256,11 @@ master_hour[,date_zone_id:= paste0(substr(timestamp,1,16))][
     ,date_zone_id:= gsub("[^0-9]", "", date_zone_id)]
 master_hour = master_hour[order(timestamp),]
 gc()
+
+#merge zone long lat onto master hour (inner join gets rid of numbers that aren't zones)
+master_hour = merge(master_hour, centroids[,c("plong", "plat", "zone","boro")],
+                    by = "zone")
+master_hour[,.N, by = .(is.na(plat))] #tests NA values should be only FALSE
 
 
 featurez = c("puloc", "trips_med","date" ,"hour", "zone_from")
@@ -334,6 +345,9 @@ master_hour[,hour.f :=as.factor(hour(timestamp))]
 #extract final data set-------------------------------------------------------------
 master_write = master_hour[, c("date_zone_id",
                                "zone",
+                               "plong",
+                               "plat",
+                               "boro",
                                "zone.f",
                                "hour.f",
                                "timestamp",
@@ -376,12 +390,47 @@ zone_distribution = master_write[,sum(total_trips), by = .(zone, year(timestamp)
 #extract only manhattan---------------------------------------------------------------
 manhattan = taxi_zones[taxi_zones$Borough == "Manhattan",]
 master_man = master_write[master_write$zone %in% manhattan$LocationID,]
-
+master_man = na.omit(master_man)
 
 
 #test basic linear model for manhattan-----------------------------------------------
 
+fit = lm(total_trips ~  + 
+           mean_temp +
+           zone.f +
+           hour.f +
+           weekday.f +
+           #mean_wind_speed + 
+           precipitation +
+           gas_prices 
+         #+ authorized_vehicles
+         + arts_entertainment
+         , master_man)
 
+summary(fit)
+
+#test residuals are normally distributed start with attribute join
+master_man_agg = master_man[,.(total_trips = sum(total_trips)), by = .(zone = as.numeric(zone))]
+tracts@data = merge(tracts@data, master_man_agg, by.x = "OBJECTID", by.y = "zone")
+
+
+master_man$residuals = residuals(fit)
+grps = 10
+brks = quantile(master_man$residuals, 0:(grps-1)/(grps-1), na.rm=TRUE)
+
+
+
+tracts@data
+
+
+
+p = spplot(h, "houseValue", at=brks, col.regions=rev(brewer.pal(grps, "RdBu")), col="transparent" )
+p + layer(sp.polygons(hh))
+
+ggplot() +
+  geom_polygon(data=tracts, aes(x=long, y=lat, group=group)
+               , fill="black", colour="grey90", alpha=1) +
+  
 
 
 
