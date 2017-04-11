@@ -152,8 +152,8 @@ bike_trips[,date:= format(as.Date(date, "%m/%d/%Y"), "%Y-%m-%d")]
 
 #paste0 into bike data if less than 10
 bike_trips[,hour:= as.numeric(as.character(hour))][,hour:= ifelse(hour < 10, paste0("0",hour),hour)][
-    ,hour:= paste0(hour, ":00")][
-      ,date_zone_id:= paste0(date,"_",hour,"_",taxi_zone)]
+    ,hour:= paste0(hour, ":00")]
+bike_trips[,date_zone_id:= paste0(date,"_",hour,"_",taxi_zone)]
 bike_trips[,date_zone_id:= gsub("[^0-9]", "",date_zone_id)]
 
 
@@ -222,6 +222,9 @@ fs_data = fs[ ,.N , by = .(year,OBJECTID, big_cat)][,year_id:= paste0(year,OBJEC
 
 #pivot data to merge on year
 fs_data = spread(fs_data, big_cat, N)
+names(fs_data) = c("year", "OBJECTID", "year_id", "arts_entertainment",
+                   "college_university", "event", "food", "nightlife",
+                   "outdoors_rec", "professional", "residence", "shop_service", "travel")
 rm(fs)
 gc()
 
@@ -310,16 +313,16 @@ master_hour[,bike_trips:= ifelse(is.na(bike_trips),0,bike_trips)]
 
 #spatial and fs recode to 0 and objectid
 master_hour[,OBJECTID:= ifelse(is.na(OBJECTID), zone, OBJECTID)]
-master_hour[,`Arts&Entertainment`:= ifelse(is.na(`Arts&Entertainment`), 0, `Arts&Entertainment`)]
-master_hour[,`College&University` := ifelse(is.na(`College&University`), 0 , `College&University`)]
-master_hour[,Event:= ifelse(is.na(Event), 0, Event)]
-master_hour[,Food := ifelse(is.na(Food), 0, Food)]
-master_hour[,NightlifeSpot:= ifelse(is.na(NightlifeSpot), 0, NightlifeSpot)]
-master_hour[,`Outdoors&Recreation` := ifelse(is.na(`Outdoors&Recreation`), 0, `Outdoors&Recreation`)]
-master_hour[,`Professional&OtherPlaces` := ifelse(is.na(`Professional&OtherPlaces`), 0, `Professional&OtherPlaces`)]
-master_hour[,Residence := ifelse(is.na(Residence), 0, Residence)]
-master_hour[,`Shop&Service` := ifelse(is.na(`Shop&Service`),0, `Shop&Service`)]
-master_hour[,`Travel&Transport` := ifelse(is.na(`Travel&Transport`), 0 , `Travel&Transport`)]
+master_hour[,arts_entertainment:= ifelse(is.na(arts_entertainment), 0, arts_entertainment)]
+master_hour[,college_university := ifelse(is.na(college_university), 0 , college_university)]
+master_hour[,event:= ifelse(is.na(event), 0, event)]
+master_hour[,food := ifelse(is.na(food), 0, food)]
+master_hour[,nightlife:= ifelse(is.na(nightlife), 0, nightlife)]
+master_hour[,outdoors_rec := ifelse(is.na(outdoors_rec), 0, outdoors_rec)]
+master_hour[,professional := ifelse(is.na(professional), 0, professional)]
+master_hour[,residence := ifelse(is.na(residence), 0, residence)]
+master_hour[,shop_service := ifelse(is.na(shop_service),0, shop_service)]
+master_hour[,travel := ifelse(is.na(travel), 0 , travel)]
 
 #total_trips, weekday and zone as factor
 master_hour[,total_trips := trips_shl + trips_med]
@@ -344,17 +347,17 @@ master_write = master_hour[, c("date_zone_id",
                                "trips_med",
                             #   "sum_entries",
                             #   "OBJECTID",
-                               "Arts&Entertainment",
-                               "College&University",
-                               "Event",
-                               "Food",
-                               "NightlifeSpot",
-                               "Outdoors&Recreation",
-                               "Professional&OtherPlaces",
-                               "Residence",
-                               "Shop&Service",
-                               "Travel&Transport",
-                               "total_trips")]
+                            "arts_entertainment", 
+                            "college_university",
+                             "event",
+                            "food",
+                            "nightlife",
+                            "outdoors_rec",
+                            "professional",      
+                            "residence",
+                            "shop_service",
+                            "travel",
+                            "total_trips")]
 
 
 rm(master_hour)
@@ -412,24 +415,25 @@ master$total_trips = master$trips_med+master$trips_shl
 
 
 #exploratory analysis--------------------------
-
+master = master_man
+gc()
 #histograms
 par(mfrow=c(2,2))
 hist(master$mean_temp, main="temperature")
 hist(master$mean_wind_speed, main="wind speed")
-hist(master$precip_inches, main="precipitation")
-hist(master$wholesale_gas_price, main = "wholesale gas prices")
-hist(master$trips_fhv, main = "daily fhv trips")
-hist(master$authorized_vehicles, main = "daily authorized tlc vehicles")
+hist(master$precipitation, main="precipitation")
+hist(master$gas_prices, main = "wholesale gas prices")
+#hist(master, main = "daily fhv trips")
+#hist(master$authorized_vehicles, main = "daily authorized tlc vehicles")
 hist(master$bike_trips, main = "daily citibike trips")
-hist(master$trips_med, main = "daily med trips")
-hist(master$subway_trips_entries, main = "daily subway entries")
+hist(master$total_trips, main = "daily total trips")
+#hist(master$subway_trips_entries, main = "daily subway entries")
 
 
 #hist(master$subway_trips_exits, main = "daily subway exits") not necessary 
 
 options(scipen=999)
-plot(master$trips_fhv,master$trips_total)
+#plot(master$trips_shl,master$trips_total)
 plot(master$mean_temp, master$trips_total)
 plot(master$mean_wind_speed, master$trips_total)
 plot(master$authorized_vehicles, master$trips_total)
@@ -449,16 +453,8 @@ fit = lm(total_trips ~  +
            precipitation +
            gas_prices 
            #+ authorized_vehicles
-           + bike_trips
-           + `Arts&Entertainment`
-           + `College&University`
-           + Food
-           + NightlifeSpot
-           +`Professional&OtherPlaces`
-           + Residence
-           + `Shop&Service`
-           + `Travel&Transport`
-           + `Outdoors&Recreation`
+          arts_entertainment +
+            
          , master_man)
 
 summary(fit)
