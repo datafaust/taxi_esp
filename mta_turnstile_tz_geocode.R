@@ -4,6 +4,7 @@ library(ggmap)
 library(maptools)
 library(spatialEco)
 library(data.table)
+library(readxl)
 
 #basic map --------------------------------------------------------
 setwd(cabinets$gis)
@@ -11,8 +12,19 @@ cd = readOGR("tz_cd.shp", layer = "tz_cd")
 cd_sp = readShapeSpatial("tz_cd.shp", proj4string=CRS("+proj=longlat +datum=NAD83"))
 
 #pull lookup data--------------------------------------
+
+#pulls custom geographic 
 setwd(cabinets$git_home)
 lookup = read.csv("mta_longlat_lookup_table_final.csv", header =T)
+
+
+#pull in remote key on booths
+temp = tempfile(fileext = ".xls")
+dataURL = "http://web.mta.info/developers/resources/nyct/turnstile/Remote-Booth-Station.xls"
+download.file(dataURL, destfile=temp, mode='wb')
+remote_key = read_excel(temp, sheet =1)
+names(remote_key) = c("UNIT", "BOOTH", "STATION", "LINENAME", "DIVISION")
+
 
 #merge and spatial join -----------------------------------
 setwd("C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data")
@@ -42,9 +54,10 @@ pblapply(list.files(), function(x) {
           as.numeric(
             difftime(shift(TIMESTAMPZ, type = "lead"), TIMESTAMPZ, units = "hours")
           )
-        ), by = .(STATION, SCP)]
+        ), by = .(STATION, SCP, `C/A`, UNIT)]
   
-  fs_data[,HOURLY_ENTRY:= c(NA, diff(ENTRIES)), by = .(STATION, SCP)][,HOURLY_EXITS:= c(NA, diff(EXITS)), by = .(STATION, SCP)]
+  fs_data[,HOURLY_ENTRY:= c(NA, diff(ENTRIES)), by = .(STATION, SCP, `C/A`, UNIT)][
+    ,HOURLY_EXITS:= c(NA, diff(EXITS)), by = .(STATION, SCP, `C/A`, UNIT)]
 
   #merge
   fs_data2 = merge(fs_data, lookup, by = "superid"#, all.x = T
