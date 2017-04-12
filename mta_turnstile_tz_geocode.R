@@ -3,17 +3,16 @@ library(rgdal)
 library(ggmap)
 library(maptools)
 library(spatialEco)
+library(data.table)
 
 #basic map --------------------------------------------------------
 setwd(cabinets$gis)
 cd = readOGR("tz_cd.shp", layer = "tz_cd")
 cd_sp = readShapeSpatial("tz_cd.shp", proj4string=CRS("+proj=longlat +datum=NAD83"))
 
-
 #pull lookup data--------------------------------------
 setwd(cabinets$git_home)
 lookup = read.csv("mta_longlat_lookup_table_final.csv", header =T)
-
 
 #merge and spatial join -----------------------------------
 setwd("C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data")
@@ -24,22 +23,33 @@ pblapply(list.files(), function(x) {
   setwd("C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data")
   fs_data = fread(x)
   gc()
-  
+  fs_data = fread(list.files()[1])
   #print(fs_data)
   
   #merge turnstile data with lookup--------
-  fs_data$STATION = tolower(fs_data$STATION) #lower letters
-  fs_data$STATION =  gsub(" ", "", fs_data$STATION, fixed = TRUE) #kill spaces
-  fs_data$id = gsub("[^0-9]", "", fs_data$STATION) #extract numbers only
-  fs_data$id = ifelse(fs_data$id == "", fs_data$STATION, fs_data$id) #fill no numericals
-  fs_data$superid = paste0(fs_data$id, fs_data$LINENAME) #create superid
-  fs_data$superid = tolower(fs_data$superid) #lower one last time
+  fs_data[,STATION:= tolower(STATION)] #lower letters
+  fs_data[,STATION:=  gsub(" ", "", STATION, fixed = TRUE)] #kill spaces
+  fs_data[,id:= gsub("[^0-9]", "", STATION)] #extract numbers only
+  fs_data[,id:= ifelse(id == "", STATION, id)] #fill no numericals
+  fs_data[,superid:= tolower(paste0(id, LINENAME))] #create superid
   
   
+  #read data
+  fs_data[,DATE:= format(as.Date(DATE, "%m/%d/%Y"), "%Y-%m-%d")][
+    ,HOUR:= substr(TIME, 1,2)][
+      ,TIMESTAMPZ:=as.POSIXct(format(paste(DATE, TIME), origin = "%m/%d/%Y %H:%M:%S"), tz = "America/New_York")][
+        ,DIFF_HOURS:=round(
+          as.numeric(
+            difftime(shift(TIMESTAMPZ, type = "lead"), TIMESTAMPZ, units = "hours")
+          )
+        ), by = .(STATION, SCP)]
   
+  fs_data[,HOURLY_ENTRY:= c(NA, diff(ENTRIES)), by = .(STATION, SCP)][,HOURLY_EXITS:= c(NA, diff(EXITS)), by = .(STATION, SCP)]
+
   #merge
-  fs_data = merge(fs_data, lookup, by = "superid", all.x = T)
-  
+  fs_data2 = merge(fs_data, lookup, by = "superid"#, all.x = T
+                  )
+  setorder(fs_data2, STATION, SCP, TIMESTAMPZ)
   #print(table(is.na(fs_data$Station_Longitude)))
   
   colnames(fs_data)[colnames(fs_data) == "Station_Longitude"] = 'x'
@@ -77,15 +87,14 @@ pblapply(list.files(), function(x) {
   
   # Use 'over' to get _indices_ of the Polygons object  containing each point 
   indices = over(pointsSP, cd)
-  
-  fs_data = cbind(fs_data, indices)
-  
+  fs_data = setDT(cbind(fs_data, indices))#[,.(superid, C/A, UNIT, SCP, STATION, LINENAME,
+                                           #   ENTIRIES, EXITS, TIMESTAMPZ, DIFF_HOURS, HOURLY_ENTRIES,
+                                          #    HOURLY_EXITS)]
   rm(fs_points)
   
   setwd("C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data_geocoded_tz")
   
   #print(fs_data)
-  
   write.csv(fs_data, paste0("geocoded_taxizones_",substr(x,1, nchar(x)-4),".csv"))
   
   gc()

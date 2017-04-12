@@ -187,6 +187,7 @@ bike_trips[,date_zone_id:= gsub("[^0-9]", "",date_zone_id)]
 #   gc()
 # }
 
+
 setwd(cabinets$mta)
 
 #loop through files and aggregate
