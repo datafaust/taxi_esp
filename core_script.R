@@ -27,28 +27,10 @@ cabinets = list(foursquare = "I:/COF/COF/_M3trics/external_useful_data/foursquar
                 gis = "I:\\COF\\COF\\GIS"
 ) 
 
-
-
-setwd(cabinets$gas_scrape)
-
-x = "C:\\Users\\lopezf\\Desktop\\regression_test\\regression_test\\gas_data"
-files = list.files(path = x,pattern = ".csv")
-temp = lapply(files, fread, sep=",")
-gas_data = rbindlist( temp, fill = T)
-gas_data = as.data.frame(gas_data)
-
-#extract date
-gas_data$date = as.Date(gas_data$time_called)
-
-#transform variables
-gas_data$price = as.numeric(gas_data$price)
-
-#aggregate to daily averages of gas
-gas_date = aggregate(price ~ date, gas_data, FUN = mean)
-
 #read gas from FRED
 gas_date_harbour = fread("http://www.quandl.com/api/v1/datasets/FRED/DGASNYH.csv")
-gas_date_harbour$DATE = as.Date(gas_date_harbour$DATE)
+gas_date_harbour[,timestampz:= fastPOSIXct(DATE, tz = "GMT")][
+  ,gas_price:= as.numeric(DGASNYH)]
 
 
 #Quality of Life--------------------------------------------------------------------------------------------------
@@ -56,16 +38,15 @@ gas_date_harbour$DATE = as.Date(gas_date_harbour$DATE)
 setwd(cabinets$home)
 
 #sp500 data by day
-sp500 = read.csv("SP500.csv", header=T)
-
-sp500$DATE = as.Date(sp500$DATE)
-sp500$VALUE[sp500$VALUE == "."] = NA
-sp500$VALUE = as.numeric(as.character(sp500$VALUE))
+sp500 = fread("SP500.csv")
+sp500[,timestampz:= fastPOSIXct(DATE, tz = "GMT")]
+sp500[,VALUE:= ifelse(VALUE == ".", NA, VALUE)]
+sp500[,sp500:= as.numeric(as.character(VALUE))]
 
 #cpi food and beverages
-cpifbev = read.csv("cpi_food_bev.csv", header = T)
-cpifbev$DATE = as.Date(cpifbev$DATE)
-
+cpifbev = fread("cpi_food_bev.csv")
+cpifbev[,timestampz:= fastPOSIXct(DATE, tz = "GMT")]
+cpifbev[,cpi:= as.numeric(as.character(CPIFABSL))]
 
 
 #weather data by day------------------------------------------------------------------------------------------------------
@@ -73,10 +54,8 @@ weather = fread("https://www.wunderground.com/history/airport/KNYC/2015/1/1/Cust
 weather2 = fread("https://www.wunderground.com/history/station/87938/2016/2/2/CustomHistory.html?dayend=16&monthend=12&yearend=2016&req_city=&req_state=&req_statename=&reqdb.zip=&reqdb.magic=&reqdb.wmo=&format=1")
 
 names(weather2) = names(weather)
-
 weather = rbind(weather, weather2)
 weather = weather[nchar(weather$EST) > 5,]
-
 
 #split dates, edit and reprep
 weather = setDT(data.frame(weather, do.call(rbind, str_split(weather$EST, '-'))))
@@ -91,34 +70,10 @@ weather[,EST:= as.Date(paste0(X1, "-" ,X2,"-" ,X3), "%Y-%m-%d")]
 weather = weather[, c("EST", "Mean.TemperatureF", "Mean.Wind.SpeedMPH", "PrecipitationIn")][
   ,Mean.TemperatureF:=as.numeric(Mean.TemperatureF)][
     ,Mean.Wind.SpeedMPH:=as.numeric(Mean.Wind.SpeedMPH)][
-      ,PrecipitationIn:=as.numeric(PrecipitationIn)]
+      ,PrecipitationIn:=as.numeric(PrecipitationIn)][
+        ,EST:=fastPOSIXct(EST, tz = "GMT")]
 weather = weather[!duplicated(weather$EST),]
-
-
-#active drivers list medallions--------------------------------------------------------------------------------------------
-
-#vehicle_list = fread("https://data.cityofnewyork.us/api/views/rhe8-mgbb/rows.csv?accessType=DOWNLOAD")
-
-#vehicle_list = RJSONIO::fromJSON("https://data.cityofnewyork.us/resource/7drc-shp9.json?$query=SELECT last_updated_date")
-featurez = c("Name" ,"Last Date Updated","Last Time Updated")
-vehicle_list = fread("med_vehicles.csv", select = featurez)
-
-
-vehicle_list$`Last Date Updated` = format(as.Date(vehicle_list$`Last Date Updated`, "%m/%d/%Y"), "%Y-%m-%d")
-vehicle_list$`Last Time Updated` = paste0(vehicle_list$`Last Time Updated`, ":00")
-vehicle_list$time_stamp = as.POSIXct(paste(vehicle_list$`Last Date Updated`, vehicle_list$`Last Time Updated`), format="%Y-%m-%d %H:%M:%S")
-daily_vehicles  = vehicle_list[,.N, by=list(vehicle_list$`Last Date Updated`, vehicle_list$time_stamp)]
-daily_vehicles = daily_vehicles[,sum(N), by = "vehicle_list"]
-
-#daily_vehicles = daily_vehicles[!duplicated(daily_vehicles$time_stamp),]
-
-titlez = c("date", "authorized_vehicles")
-names(daily_vehicles) = titlez
-daily_vehicles$date = as.Date(daily_vehicles$date)
-daily_vehicles$authorized_vehicles[daily_vehicles$authorized_vehicles > 15000] = NA
-
-
-
+names(weather) = c("timestampz", "mean_temp","mean_wind_speed","rain_inches")
 
 #citibike data by hour by taxi zone-------------------------------------------------------------------------------------------------
 #pull is depracated
@@ -133,31 +88,36 @@ daily_vehicles$authorized_vehicles[daily_vehicles$authorized_vehicles > 15000] =
 # etl_extract(bikes, years = 2015, months = 1:12) %>%
 #etl_transform(bikes, years = 2015, months = 1:12)  %>%
 #etl_load(bikes, years = 2015, months = 1:12)
+#bike_trips = fread(list.files()[1])
 
 #sum trips hourly by region 
 setwd(cabinets$citibike)
-
 bike_trips = rbindlist(
-  pblapply(list.files(), function(x) {
+  pblapply(list.files()
+           #[1:2]
+           , function(x) {
     featurez = c("starttime", "OBJECTID")
     bike_trips = fread(x, select = featurez)
-    bike_trips = setDT(data.frame(bike_trips, do.call(rbind, str_split(bike_trips$starttime, ' '))))
-    bike_trips = setDT(data.frame(bike_trips, do.call(rbind, str_split(bike_trips$X2, ':'))))
-    daily_trips = aggregate(starttime ~ X1 + X1.1 + OBJECTID, bike_trips, FUN =length)
+    #split time at the slash
+    bike_trips = setDT(data.frame(bike_trips, do.call(rbind, str_split(bike_trips$starttime, '/'))))
+    bike_trips = setDT(data.frame(bike_trips, do.call(rbind, str_split(bike_trips$X3, ' '))))
+    bike_trips = setDT(data.frame(bike_trips, do.call(rbind, str_split(bike_trips$X2.1, ':'))))
+    
+    #split time, and hour then add zeros below 10 and paste back together to form a viable timestamp
+    bike_trips[,X1:=as.numeric(X1)][,X2:=as.numeric(X2)][,X1.2:=as.numeric(X1.2)]
+    bike_trips[,X1:=ifelse(X1 < 10, paste0("0", X1), X1)][
+      ,X2:=ifelse(X2 < 10, paste0("0", X2), X2)][
+        ,X1.2:=ifelse(X1.2 < 10, paste0("0", X1.2), X1.2)][
+          ,timestampz:=fastPOSIXct(paste0(X1.1,"-",X1,"-",X2," ",X1.2,":","00", ":00"),tz = "GMT"),]
+    
+    #sum trips by hour and taxi zone
+    daily_trips = bike_trips[,.(bike_trips = .N), by = .(taxi_zone = as.numeric(OBJECTID), timestampz)]
     rm(bike_trips)
     gc()
     return(assign(x, daily_trips))
   })
 )
 
-names(bike_trips) = c("date", "hour","taxi_zone","bike_trips")
-bike_trips[,date:= format(as.Date(date, "%m/%d/%Y"), "%Y-%m-%d")]
-
-#paste0 into bike data if less than 10
-bike_trips[,hour:= as.numeric(as.character(hour))][,hour:= ifelse(hour < 10, paste0("0",hour),hour)][
-    ,hour:= paste0(hour, ":00")]
-bike_trips[,date_zone_id:= paste0(date,"_",hour,"_",taxi_zone)]
-bike_trips[,date_zone_id:= gsub("[^0-9]", "",date_zone_id)]
 
 
 #mta subway data by hour and region------------------------------------------------------------------------------------------------------
@@ -187,34 +147,23 @@ bike_trips[,date_zone_id:= gsub("[^0-9]", "",date_zone_id)]
 #   gc()
 # }
 
-
 setwd(cabinets$mta)
-
+#mta = fread(list.files()[1])
 #loop through files and aggregate
 subway_trips = rbindlist(
   pblapply(list.files(), function(x) {
-    options(scipen=999)
-    featurez = c("ENTRIES", "DATE", "TIME", "OBJECTID")
-    test = fread(x, select = featurez)
-    #print(test)
-    subway_trips = test[,.(sum_entries=sum(ENTRIES)), by = .(DATE,TIME,OBJECTID)] 
-    subway_trips$DATE = format(as.Date(subway_trips$DATE, "%m/%d/%Y"), "%Y-%m-%d")
-    subway_trips$hour = substr(subway_trips$TIME, 1,2)
-    subway_trips = subway_trips[,.(sum_entries=sum(sum_entries)), by = .(DATE,hour,OBJECTID)]
-    subway_trips$hour = paste0(subway_trips$hour, ":00")
+    featurez = c("HOURLY_ENTRY", "HOURLY_EXITS" ,"DATE", "TIME", "OBJECTID", "TIMESTAMPZ")
+    mta = fread(x, select = featurez)
+    subway_trips = mta[,.(subway_entries=sum(HOURLY_ENTRY), subway_exits = sum(HOURLY_EXITS))
+                       , by = .(taxi_zone = OBJECTID, timestampz = TIMESTAMPZ)]
     return(assign(x,subway_trips))
     rm(subway_trips)
     gc()
   })
 )
 
-#sort
-subway_trips = subway_trips[order(OBJECTID, DATE, hour),]
-subway_trips[,date_zone_id:= paste0(DATE, "_",
-                                   hour, "_",
-                                   OBJECTID)][
-                                     ,date_zone_id:= gsub("[^0-9]", "", date_zone_id)][
-                                       ,timestamp:= paste(DATE, hour)]
+subway_trips = subway_trips[,taxi_zone:=as.numeric(taxi_zone)][
+  ,timestampz:=fastPOSIXct(timestampz, tz = "GMT")][order(taxi_zone, timestampz),]
 
 #source zone values------------------------------------------------------------------------
 setwd(cabinets$git_home)
@@ -226,11 +175,11 @@ setwd(cabinets$foursquare)
 featurez = c("OBJECTID", "big_cat", "year", "locationid", "locationname")
 fs = fread("geocoded_taxizones_master_fs.csv",  
            select = featurez)
-fs_data = fs[ ,.N , by = .(year,OBJECTID, big_cat)][,year_id:= paste0(year,OBJECTID)]
+fs_data = fs[ ,.N , by = .(year,OBJECTID, big_cat)][,year_id:= paste0(year,as.numeric(OBJECTID))]
 
 #pivot data to merge on year
 fs_data = spread(fs_data, big_cat, N)
-names(fs_data) = c("year", "OBJECTID", "year_id", "arts_entertainment",
+names(fs_data) = c("year", "taxi_zone", "year_id", "arts_entertainment",
                    "college_university", "event", "food", "nightlife",
                    "outdoors_rec", "professional", "residence", "shop_service", "travel")
 rm(fs)
@@ -244,78 +193,86 @@ setwd(cabinets$home)
 
 #create base file that has every taxi location and every day and every hour
 base_hours = seq(
-  from=as.POSIXct("2015-1-1 0:00", tz="America/New_York"),
-  to=as.POSIXct("2016-11-11 23:00", tz="America/New_York"),
+  from=fastPOSIXct("2015-1-1 0:00", tz="GMT"),
+  to=fastPOSIXct("2016-11-11 23:00", tz="GMT"),
   by="hour"
 ) 
 
 taxi_zones = sqlFetch(TPEP2, "TPEP2_LOCATION_lookup")
 loc = as.character(taxi_zones$LocationID)
 master_hour = setDT(merge(loc, base_hours))
-colnames(master_hour) = c("zone","timestamp")
-master_hour[,date_zone_id:= paste0(substr(timestamp,1,16))][
-  ,date_zone_id:= paste0(gsub(" ", "_", date_zone_id),"_", zone)][
-    ,date_zone_id:= gsub("[^0-9]", "", date_zone_id)]
-master_hour = master_hour[order(timestamp),]
+colnames(master_hour) = c("taxi_zone","timestampz")
 gc()
 
 #merge zone long lat onto master hour (inner join gets rid of numbers that aren't zones)
-master_hour = merge(master_hour, centroids[,c("plong", "plat", "zone","boro")],
-                    by = "zone")
+master_hour = merge(master_hour, centroids[,c("plong", "plat", "taxi_zone","boro")],by = "taxi_zone")
 master_hour[,.N, by = .(is.na(plat))] #tests NA values should be only FALSE
+master_hour[,taxi_zone:=as.numeric(taxi_zone)]
 
-
+#taxi data
 featurez = c("puloc", "trips_med","date" ,"hour", "zone_from")
 hourly_med_trips_loc = fread("hourly_med_trips_loc.csv", select = featurez)
 hourly_shl_trips_loc = fread("hourly_shl_trips_loc.csv", select = featurez)
-hourly_med_trips_loc[,date:= as.Date(date)]
-hourly_shl_trips_loc[,date:= as.Date(date)]
-hourly_med_trips_loc[,hour:= paste0(hour, ":00")]
-hourly_shl_trips_loc[,hour:= paste0(hour, ":00")]
-
-hourly_med_trips_loc[,date_zone_id:= paste0(date, "_",
-                                           hour,"_",
-                                           puloc)]
-
-hourly_med_trips_loc[,date_zone_id:= gsub("[^0-9]", "", date_zone_id)]
-
+hourly_med_trips_loc[,timestampz:= fastPOSIXct(paste0(date, " ", hour, ":00:00"),tz = "GMT")]
+hourly_shl_trips_loc[,timestampz:= fastPOSIXct(paste0(date, " ", hour, ":00:00"),tz = "GMT")]
 colnames(hourly_shl_trips_loc)[colnames(hourly_shl_trips_loc) == "trips_med"] = "trips_shl"
+colnames(hourly_med_trips_loc)[colnames(hourly_med_trips_loc) == "puloc"] = "taxi_zone"
+colnames(hourly_shl_trips_loc)[colnames(hourly_shl_trips_loc) == "puloc"] = "taxi_zone"
+hourly_med_trips_loc[,taxi_zone:=as.numeric(taxi_zone)]
+hourly_shl_trips_loc[,taxi_zone:=as.numeric(taxi_zone)]
 
-hourly_shl_trips_loc[,date_zone_id:= paste0(date, "_",
-                                           hour,"_",
-                                           puloc)]
-hourly_shl_trips_loc[,date_zone_id:= gsub("[^0-9]", "", date_zone_id)]
 
-#merge all dat-----------------------------------------------------------------------
+#test class equality (should show true)
+class(hourly_med_trips_loc$taxi_zone) == class(master_hour$taxi_zone)
+class(master_hour$taxi_zone) == class(hourly_shl_trips_loc$taxi_zone)
+class(master_hour$taxi_zone) == class(bike_trips$taxi_zone)
+class(bike_trips$taxi_zone) == class(subway_trips$taxi_zone)
+class(hourly_med_trips_loc$timestampz) == class(master_hour$timestampz)
+class(master_hour$timestampz) == class(bike_trips$timestampz)
+class(bike_trips$timestampz) == class(subway_trips$timestampz)
+class(subway_trips$timestampz) == class(gas_date_harbour$timestampz)
+class(gas_date_harbour$timestampz) == class(sp500$timestampz)
+class(sp500$timestampz) == class(cpifbev$timestampz)
+class(cpifbev$timestampz) == class(weather$timestampz)
+
+#merge all dat----------------------------------------------------------------------------------------------------
 
 #merge daily variables
-master_day = setDT(merge(weather,gas_date_harbour, by.x = "EST", by.y = "DATE",all.x = T))[
-  ,VALUE:= na.locf(DGASNYH,fromLast = T)][,c(1,2,3,4,6)]
-names(master_day) = c("date", "mean_temp", "mean_wind_speed", "precipitation", "gas_prices")
+master_day = setDT(merge(weather,gas_date_harbour, by = "timestampz", all.x = T))
+master_day = merge(master_day, sp500, by = c("timestampz"), all.x = T)
+master_day = merge(master_day, cpifbev, by = c("timestampz"), all.x = T)[,c(1,2,3,4,7,10,13)][
+  ,gas_price:= na.locf(gas_price,fromLast = F)][
+    ,sp500:=na.locf(sp500,fromLast = F)][
+      ,cpi:=na.locf(cpi,fromLast = F),][
+        ,rain_inches:=ifelse(is.na(rain_inches), mean(rain_inches, na.rm = T), rain_inches)]
 
 #merge hourly variables on master tpep trip set
-master_hour = merge(master_hour, hourly_med_trips_loc, by = "date_zone_id", all.x = T)
+master_hour = merge(master_hour, hourly_med_trips_loc[,c("taxi_zone", "trips_med","timestampz")]
+                    ,by = c("taxi_zone","timestampz"), all.x = T)
 
-master_hour = merge(master_hour, hourly_shl_trips_loc[, c("date_zone_id","trips_shl")], 
-                    by = 'date_zone_id', all.x = T)
-master_hour = merge(master_hour, bike_trips[,c("date_zone_id","bike_trips")],by = "date_zone_id", all.x = T)
-master_hour = master_hour[order(date
-                                ,zone_from
-                                ,hour),]
-#master_hour = merge(master_hour, subway_trips[,c("date_zone_id","sum_entries")], by = "date_zone_id", all.x =T)
+#merge shl trip set
+master_hour = merge(master_hour, hourly_shl_trips_loc[, c("taxi_zone","trips_shl", "timestampz")] 
+                    ,by = c("taxi_zone","timestampz"), all.x = T)
+
+#merge bike trips
+master_hour = merge(master_hour, bike_trips[,c("taxi_zone","timestampz","bike_trips")]
+                    ,by = c("taxi_zone","timestampz"), all.x = T)
+
+#merge subway entries & exits
+master_hour = merge(master_hour, subway_trips[,c("taxi_zone","timestampz","subway_entries", "subway_exits")]
+                    ,by = c("taxi_zone","timestampz"), all.x = T)
+
+#merge weather and gas 
+master_hour = merge(master_hour, master_day, by = "timestampz", all.x = T)
 
 #merge fs data
-master_hour$year_id = paste0(year(master_hour$timestamp),master_hour$zone)
-master_hour = merge(master_hour, fs_data, by = "year_id", all.x =T)
-master_hour$date = as.Date(master_hour$timestamp)
+master_hour[,year_id:= paste0(year(timestampz),taxi_zone)]
+master_hour = merge(master_hour, fs_data, by = c("year_id","taxi_zone"), all.x =T)
 
-#merge weather and gas to the master set
-master_hour = merge(master_hour, master_day, by = "date", all.x = T)
+master_hour[,total_trips:= trips_med + trips_shl]
+setorder(master_hour, taxi_zone, timestampz)
 
 gc()
-#master_hour$timestamp = paste(master_hour$date, master_hour$hour)
-
-master_hour = master_hour[order(master_hour$zone, timestamp),]
 summary(master_hour)
 
 #treat missing values in data--------------------------------------------------------------
@@ -324,8 +281,7 @@ master_hour[,trips_shl:= ifelse(is.na(trips_shl), 0, trips_shl)]
 master_hour[,trips_med:= ifelse(is.na(trips_med), 0, trips_med)]
 master_hour[,bike_trips:= ifelse(is.na(bike_trips),0,bike_trips)]
 
-#spatial and fs recode to 0 and objectid
-master_hour[,OBJECTID:= ifelse(is.na(OBJECTID), zone, OBJECTID)]
+#code fs variables as 0 if not present 
 master_hour[,arts_entertainment:= ifelse(is.na(arts_entertainment), 0, arts_entertainment)]
 master_hour[,college_university := ifelse(is.na(college_university), 0 , college_university)]
 master_hour[,event:= ifelse(is.na(event), 0, event)]
@@ -338,31 +294,29 @@ master_hour[,shop_service := ifelse(is.na(shop_service),0, shop_service)]
 master_hour[,travel := ifelse(is.na(travel), 0 , travel)]
 
 #total_trips, weekday and zone as factor
-master_hour[,total_trips := trips_shl + trips_med]
-master_hour[,weekday.f := as.factor(weekdays(timestamp))]
-master_hour[,zone.f := as.factor(zone)]
-master_hour[,hour.f :=as.factor(hour(timestamp))]
+master_hour[,weekday.f := as.factor(weekdays(timestampz))][
+,zone.f := as.factor(taxi_zone)][
+,hour.f :=as.factor(hour(timestampz))]
 
 
 #extract final data set-------------------------------------------------------------
-master_write = master_hour[, c("date_zone_id",
-                               "zone",
+master_write = master_hour[, c("taxi_zone",
+                               "timestampz",
                                "plong",
                                "plat",
                                "boro",
                                "zone.f",
                                "hour.f",
-                               "timestamp",
                                "weekday.f",
-                               "gas_prices",
+                               "gas_price",
                                "mean_temp",
                                "mean_wind_speed",
-                               "precipitation",
+                               "rain_inches",
                                "bike_trips",
                                "trips_shl",
                                "trips_med",
-                            #   "sum_entries",
-                            #   "OBJECTID",
+                                 "subway_entries",
+                               "subway_exits",
                             "arts_entertainment", 
                             "college_university",
                              "event",

@@ -5,6 +5,7 @@ library(maptools)
 library(spatialEco)
 library(data.table)
 library(readxl)
+library(pbapply)
 
 #basic map --------------------------------------------------------
 setwd(cabinets$gis)
@@ -35,7 +36,7 @@ pblapply(list.files(), function(x) {
   setwd("C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data")
   fs_data = fread(x)
   gc()
-  fs_data = fread(list.files()[1])
+  #fs_data = fread(list.files()[1])
   #print(fs_data)
   
   #merge turnstile data with lookup--------
@@ -60,9 +61,8 @@ pblapply(list.files(), function(x) {
     ,HOURLY_EXITS:= c(NA, diff(EXITS)), by = .(STATION, SCP, `C/A`, UNIT)]
 
   #merge
-  fs_data2 = merge(fs_data, lookup, by = "superid"#, all.x = T
-                  )
-  setorder(fs_data2, STATION, SCP, TIMESTAMPZ)
+  fs_data = merge(fs_data, lookup, by = "superid"#, all.x = T
+  )
   #print(table(is.na(fs_data$Station_Longitude)))
   
   colnames(fs_data)[colnames(fs_data) == "Station_Longitude"] = 'x'

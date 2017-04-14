@@ -24,5 +24,5 @@ centroids = cbind(as.data.frame(getSpPPolygonsLabptSlots(tracts_lat_long)),
                   tracts@data)[,c(1,2,4,5,6,9)]
 
 #rename headings etc------------------------------------
-names(centroids) = c("plong", "plat", "zone", "taxi_zone", "boro", "puma")
+names(centroids) = c("plong", "plat", "taxi_zone", "taxi_zone", "boro", "puma")
 
