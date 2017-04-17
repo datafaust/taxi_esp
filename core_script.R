@@ -21,8 +21,8 @@ options(scipen=999)
 cabinets = list(foursquare = "I:/COF/COF/_M3trics/external_useful_data/foursquare_data_2014-2016",
                 home = "C:/Users/lopezf/Desktop/regression_test/regression_test",
                 gas_scrape= "C:/Users/lopezf/Desktop/regression_test/regression_test/gas_data",
-                citibike = "C:/Users/lopezf/Desktop/regression_test/regression_test/citibike/citibike_geocoded",
-                mta = "C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data_geocoded_tz",
+                citibike = "I:/COF/COF/Analytics_and_Automation_Engineering/regression build/citibike",
+                mta = "I:/COF/COF/Analytics_and_Automation_Engineering/regression build/mta_turnstile_data_geocoded_tz",
                 git_home = "C:/Users/lopezf/Documents/R/R-3.3.1/library/taxi_esp",
                 gis = "I:\\COF\\COF\\GIS"
 ) 

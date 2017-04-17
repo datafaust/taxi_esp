@@ -28,12 +28,12 @@ names(remote_key) = c("UNIT", "BOOTH", "STATION", "LINENAME", "DIVISION")
 
 
 #merge and spatial join -----------------------------------
-setwd("C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data")
+setwd("I:\\COF\\COF\\Analytics_and_Automation_Engineering\\regression build\\mta_turnstile_data")
 
 
 pblapply(list.files(), function(x) {
   
-  setwd("C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data")
+  setwd("I:\\COF\\COF\\Analytics_and_Automation_Engineering\\regression build\\mta_turnstile_data")
   fs_data = fread(x)
   gc()
   #fs_data = fread(list.files()[1])
@@ -105,7 +105,7 @@ pblapply(list.files(), function(x) {
                                           #    HOURLY_EXITS)]
   rm(fs_points)
   
-  setwd("C:/Users/lopezf/Desktop/regression_test/regression_test/mta_turnstile_data_geocoded_tz")
+  setwd("I:/COF/COF/Analytics_and_Automation_Engineering/regression build/mta_turnstile_data_geocoded_tz")
   
   #print(fs_data)
   write.csv(fs_data, paste0("geocoded_taxizones_",substr(x,1, nchar(x)-4),".csv"))

@@ -7,15 +7,15 @@ library(spatialEco)
 library(data.table)
 
 #basic map --------------------------------------------------------
-setwd("C:\\Users\\lopezf\\Desktop\\regression_test\\regression_test")
+setwd("I:\\COF\\COF\\GIS")
 cd = readOGR("taxi_zones_sp.shp", layer = "taxi_zones_sp")
 cd_sp = readShapeSpatial("taxi_zones_sp.shp", proj4string=CRS("+proj=longlat +datum=NAD83"))
 
 #spatial join procedure-------------------------------------------
-setwd("C:\\Users\\lopezf\\Desktop\\regression_test\\regression_test\\citibike\\load")
+setwd("I:\\COF\\COF\\Analytics_and_Automation_Engineering\\regression build\\citibike\\load")
 pblapply(list.files()[4:22], function(x) {
   
-  setwd("C:\\Users\\lopezf\\Desktop\\regression_test\\regression_test\\citibike\\load")
+  setwd("I:\\COF\\COF\\Analytics_and_Automation_Engineering\\regression build\\citibike\\load")
   fs_data = fread(x)
   gc()
   
@@ -41,7 +41,7 @@ pblapply(list.files()[4:22], function(x) {
   
   rm(fs_points)
   
-  setwd("C:\\Users\\lopezf\\Desktop\\regression_test\\regression_test\\citibike\\citibike_geocoded")
+  setwd("I:\\COF\\COF\\Analytics_and_Automation_Engineering\\regression build\\citibike\\citibike_geocoded")
   
   write.csv(fs_data, paste0("geocoded_taxizones_",substr(x,1, nchar(x)-4),".csv"))
   
