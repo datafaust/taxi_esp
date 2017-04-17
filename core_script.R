@@ -164,6 +164,11 @@ subway_trips = rbindlist(
 
 subway_trips = subway_trips[,taxi_zone:=as.numeric(taxi_zone)][
   ,timestampz:=fastPOSIXct(timestampz, tz = "GMT")][order(taxi_zone, timestampz),]
+subway_trips[,subway_entries:=as.numeric(ifelse(subway_entries < 1, "NA", subway_entries))]
+subway_trips[,subway_exits:=as.numeric(ifelse(subway_exits < 1, "NA", subway_exits))]
+subway_trips = na.omit(subway_trips)
+summary(subway_trips)
+
 
 #source zone values------------------------------------------------------------------------
 setwd(cabinets$git_home)
