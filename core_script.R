@@ -29,8 +29,8 @@ cabinets = list(foursquare = "I:/COF/COF/_M3trics/external_useful_data/foursquar
 
 #read gas from FRED
 gas_date_harbour = fread("http://www.quandl.com/api/v1/datasets/FRED/DGASNYH.csv")
-gas_date_harbour[,timestampz:= fastPOSIXct(DATE, tz = "GMT")][
-  ,gas_price:= as.numeric(DGASNYH)]
+gas_date_harbour[,timestampz:= fastPOSIXct(Date, tz = "GMT")][
+  ,gas_price:= as.numeric(Value)]
 
 
 #Quality of Life--------------------------------------------------------------------------------------------------
@@ -345,6 +345,9 @@ write.csv(master_write, "master_raw.csv")
 zone_distribution = master_write[,sum(total_trips), by = .(zone, year(timestamp))]
 
 
+
+
+#ENDS HERE as of 4/28/2017------
 
 
 
