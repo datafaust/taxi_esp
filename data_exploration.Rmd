@@ -1,0 +1,46 @@
+---
+title: "Data Exploration"
+author: "Fausto Lopez"
+date: "April 28, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(data.table)
+library(lubridate)
+
+setwd("C:\\Users\\lopezf\\Desktop\\regression_test\\regression_test")
+master = fread("master_raw.csv")[,-1]
+
+```
+
+## Starting with Trends
+
+
+```{r trends}
+
+#look at trips per day by zone
+daily_volume = master[,.(shl_volume = sum(trips_shl)
+          ,yellow_volume = sum(trips_med)), by = .(dayz=substr(timestampz, 1, 10))][
+            ,total_volume:=shl_volume + yellow_volume]
+
+
+ggplot(daily_volume, aes(x = dayz, y = total_volume)) + 
+  geom_bar(stat = "identity")
+
+
+
+
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
