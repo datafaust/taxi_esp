@@ -12,7 +12,7 @@ yellow_raw = sqlQuery(TPEP2, paste("SELECT
                       FROM
                       TPEP2_Triprecord
                       WHERE
-                      tpep_pickup_datetime >= '2015-01-01' and tpep_pickup_datetime < '2015-02-01'
+                      tpep_pickup_datetime >= '2015-01-01' and tpep_pickup_datetime < '2017-01-01'
                       GROUP BY
                       convert(char(10), tpep_pickup_datetime, 121),
                       DATEPART(HOUR, tpep_pickup_datetime),
@@ -31,7 +31,7 @@ shl_raw =  sqlQuery(TPEP2, paste(
                                  FROM
                                  LPEP2_Triprecord
                                  WHERE
-                                 lpep_pickup_datetime >= '2015-01-01' and lpep_pickup_datetime < '2015-01-04'
+                                 lpep_pickup_datetime >= '2015-01-01' and lpep_pickup_datetime < '2017-01-01'
                                  GROUP BY
                                  convert(char(10), lpep_pickup_datetime, 121),
                                  DATEPART(HOUR, lpep_pickup_datetime),

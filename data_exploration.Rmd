@@ -9,6 +9,9 @@ output: html_document
 library(ggplot2)
 library(data.table)
 library(lubridate)
+library(ggthemes)
+options(scipen = 999)
+
 
 setwd("C:\\Users\\lopezf\\Desktop\\regression_test\\regression_test")
 master = fread("master_raw.csv")[,-1]
@@ -17,8 +20,9 @@ master = fread("master_raw.csv")[,-1]
 
 ## Starting with Trends
 
+First we look at the basic trips per day for each type of service:
 
-```{r trends}
+```{r trends, echo = F}
 
 #look at trips per day by zone
 daily_volume = master[,.(shl_volume = sum(trips_shl)
@@ -26,14 +30,72 @@ daily_volume = master[,.(shl_volume = sum(trips_shl)
             ,total_volume:=shl_volume + yellow_volume]
 
 
-ggplot(daily_volume, aes(x = dayz, y = total_volume)) + 
-  geom_bar(stat = "identity")
+ggplot(daily_volume, aes(x = dayz, y = total_volume, group = 1)) + 
+ geom_line(aes(y = shl_volume, colour = "shl_trips")) +
+  geom_line(aes(y = yellow_volume, colour = "yellow_trips")) +
+  geom_line(aes(y = total_volume, colour = "total_trips")) + 
+  ggtitle("Trips Per Day")+
+  theme_minimal()
 
 
 
 
 
 ```
+
+Lets break down the trips by hour:
+
+```{r, echo = F}
+hourly_volume = master[,.(shl_volume = sum(trips_shl)
+          ,yellow_volume = sum(trips_med)), by = .(hour=substr(timestampz, 12, 13))][
+            ,total_volume:=shl_volume + yellow_volume]
+
+ggplot(hourly_volume, aes(x = hour, y = total_volume, group = 1)) + 
+ geom_line(aes(y = shl_volume, colour = "shl_trips")) +
+  geom_line(aes(y = yellow_volume, colour = "yellow_trips")) +
+  geom_line(aes(y = total_volume, colour = "total_trips")) + 
+  ggtitle("Trips Per Hour")+
+  theme_minimal()
+
+
+
+```
+
+
+We can combine these two to create an animation that plays out what pickups look like over time by location:
+
+```{r}
+
+```
+
+
+How have business density changed over time?
+
+```{r}
+
+```
+
+How has citibike usage changed over time?
+
+
+
+##Understanding underserved zones
+
+
+
+
+
+##Bivariate Analysis and Distributions
+
+```{r, distributions, echo = F}
+hist(master$gas_price)
+
+
+```
+
+
+
+
 
 ## Including Plots
 

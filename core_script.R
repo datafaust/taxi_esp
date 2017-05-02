@@ -88,7 +88,8 @@ names(weather) = c("timestampz", "mean_temp","mean_wind_speed","rain_inches")
 # etl_extract(bikes, years = 2015, months = 1:12) %>%
 #etl_transform(bikes, years = 2015, months = 1:12)  %>%
 #etl_load(bikes, years = 2015, months = 1:12)
-#bike_trips = fread(list.files()[1])
+#bike_trips = fread(list.files()[2])
+#z = bike_trips[duplicated(paste0(OBJECTID, timestampz))]
 
 #sum trips hourly by region 
 setwd(cabinets$citibike)
@@ -104,7 +105,9 @@ bike_trips = rbindlist(
     bike_trips = setDT(data.frame(bike_trips, do.call(rbind, str_split(bike_trips$X2.1, ':'))))
     
     #split time, and hour then add zeros below 10 and paste back together to form a viable timestamp
-    bike_trips[,X1:=as.numeric(X1)][,X2:=as.numeric(X2)][,X1.2:=as.numeric(X1.2)]
+    bike_trips[,X1:=as.numeric(as.character(X1))][
+      ,X2:=as.numeric(as.character(X2))][
+        ,X1.2:=as.numeric(as.character(X1.2))]
     bike_trips[,X1:=ifelse(X1 < 10, paste0("0", X1), X1)][
       ,X2:=ifelse(X2 < 10, paste0("0", X2), X2)][
         ,X1.2:=ifelse(X1.2 < 10, paste0("0", X1.2), X1.2)][
@@ -117,7 +120,6 @@ bike_trips = rbindlist(
     return(assign(x, daily_trips))
   })
 )
-
 
 
 #mta subway data by hour and region------------------------------------------------------------------------------------------------------
@@ -215,12 +217,12 @@ master_hour[,.N, by = .(is.na(plat))] #tests NA values should be only FALSE
 master_hour[,taxi_zone:=as.numeric(taxi_zone)]
 
 #taxi data
-featurez = c("puloc", "trips_med","date" ,"hour", "zone_from")
-hourly_med_trips_loc = fread("hourly_med_trips_loc.csv", select = featurez)
-hourly_shl_trips_loc = fread("hourly_shl_trips_loc.csv", select = featurez)
+#featurez = c("puloc", "trips_med","date" ,"hour", "zone_from")
+hourly_med_trips_loc = fread("hourly_med_trips_loc.csv")
+hourly_shl_trips_loc = fread("hourly_shl_trips_loc.csv")
 hourly_med_trips_loc[,timestampz:= fastPOSIXct(paste0(date, " ", hour, ":00:00"),tz = "GMT")]
 hourly_shl_trips_loc[,timestampz:= fastPOSIXct(paste0(date, " ", hour, ":00:00"),tz = "GMT")]
-colnames(hourly_shl_trips_loc)[colnames(hourly_shl_trips_loc) == "trips_med"] = "trips_shl"
+#colnames(hourly_shl_trips_loc)[colnames(hourly_shl_trips_loc) == "trips_med"] = "trips_shl"
 colnames(hourly_med_trips_loc)[colnames(hourly_med_trips_loc) == "puloc"] = "taxi_zone"
 colnames(hourly_shl_trips_loc)[colnames(hourly_shl_trips_loc) == "puloc"] = "taxi_zone"
 hourly_med_trips_loc[,taxi_zone:=as.numeric(taxi_zone)]
@@ -260,7 +262,7 @@ master_hour = merge(master_hour, hourly_shl_trips_loc[, c("taxi_zone","trips_shl
                     ,by = c("taxi_zone","timestampz"), all.x = T)
 
 #merge bike trips
-master_hour = merge(master_hour, bike_trips[,c("taxi_zone","timestampz","bike_trips")]
+master_hour = merge(master_hour, bike_trips[,c("taxi_zone","bike_trips", "timestampz")]
                     ,by = c("taxi_zone","timestampz"), all.x = T)
 
 #merge subway entries & exits
@@ -303,9 +305,10 @@ master_hour[,weekday.f := as.factor(weekdays(timestampz))][
 ,zone.f := as.factor(taxi_zone)][
 ,hour.f :=as.factor(hour(timestampz))]
 
+gc()
 
 #extract final data set-------------------------------------------------------------
-master_write = master_hour[, c("taxi_zone",
+master_hour = master_hour[, c("taxi_zone",
                                "timestampz",
                                "plong",
                                "plat",
@@ -335,11 +338,10 @@ master_write = master_hour[, c("taxi_zone",
                             "total_trips")]
 
 
-rm(master_hour)
 gc()
 
 setwd(cabinets$home)
-write.csv(master_write, "master_raw.csv")
+write.csv(master_hour, "master_raw.csv")
 
 #pull out zones that don't have a lot of data
 zone_distribution = master_write[,sum(total_trips), by = .(zone, year(timestamp))]
