@@ -24,7 +24,7 @@ cabinets = list(foursquare = "I:/COF/COF/_M3trics/external_useful_data/foursquar
                 citibike = "I:/COF/COF/Analytics_and_Automation_Engineering/regression build/citibike/citibike_geocoded",
                 mta = "I:/COF/COF/Analytics_and_Automation_Engineering/regression build/mta_turnstile_data_geocoded_tz",
                 git_home = "C:/Users/lopezf/Documents/R/R-3.3.1/library/taxi_esp",
-                gis = "I:\\COF\\COF\\GIS"
+                gis = "I:/COF/COF/GIS"
 ) 
 
 #read gas from FRED
@@ -282,30 +282,30 @@ setorder(master_hour, taxi_zone, timestampz)
 gc()
 summary(master_hour)
 
-#treat missing values in data--------------------------------------------------------------
-#we assume taxi data as pure so NA's for trips = 0
-master_hour[,trips_shl:= ifelse(is.na(trips_shl), 0, trips_shl)]
-master_hour[,trips_med:= ifelse(is.na(trips_med), 0, trips_med)]
-master_hour[,bike_trips:= ifelse(is.na(bike_trips),0,bike_trips)]
-
-#code fs variables as 0 if not present 
-master_hour[,arts_entertainment:= ifelse(is.na(arts_entertainment), 0, arts_entertainment)]
-master_hour[,college_university := ifelse(is.na(college_university), 0 , college_university)]
-master_hour[,event:= ifelse(is.na(event), 0, event)]
-master_hour[,food := ifelse(is.na(food), 0, food)]
-master_hour[,nightlife:= ifelse(is.na(nightlife), 0, nightlife)]
-master_hour[,outdoors_rec := ifelse(is.na(outdoors_rec), 0, outdoors_rec)]
-master_hour[,professional := ifelse(is.na(professional), 0, professional)]
-master_hour[,residence := ifelse(is.na(residence), 0, residence)]
-master_hour[,shop_service := ifelse(is.na(shop_service),0, shop_service)]
-master_hour[,travel := ifelse(is.na(travel), 0 , travel)]
-
-#total_trips, weekday and zone as factor
-master_hour[,weekday.f := as.factor(weekdays(timestampz))][
-,zone.f := as.factor(taxi_zone)][
-,hour.f :=as.factor(hour(timestampz))]
-
-gc()
+#treat missing values in data
+# #we assume taxi data as pure so NA's for trips = 0
+# master_hour[,trips_shl:= ifelse(is.na(trips_shl), 0, trips_shl)]
+# master_hour[,trips_med:= ifelse(is.na(trips_med), 0, trips_med)]
+# master_hour[,bike_trips:= ifelse(is.na(bike_trips),0,bike_trips)]
+# 
+# #code fs variables as 0 if not present 
+# master_hour[,arts_entertainment:= ifelse(is.na(arts_entertainment), 0, arts_entertainment)]
+# master_hour[,college_university := ifelse(is.na(college_university), 0 , college_university)]
+# master_hour[,event:= ifelse(is.na(event), 0, event)]
+# master_hour[,food := ifelse(is.na(food), 0, food)]
+# master_hour[,nightlife:= ifelse(is.na(nightlife), 0, nightlife)]
+# master_hour[,outdoors_rec := ifelse(is.na(outdoors_rec), 0, outdoors_rec)]
+# master_hour[,professional := ifelse(is.na(professional), 0, professional)]
+# master_hour[,residence := ifelse(is.na(residence), 0, residence)]
+# master_hour[,shop_service := ifelse(is.na(shop_service),0, shop_service)]
+# master_hour[,travel := ifelse(is.na(travel), 0 , travel)]
+# 
+# #total_trips, weekday and zone as factor
+# master_hour[,weekday.f := as.factor(weekdays(timestampz))][
+# ,zone.f := as.factor(taxi_zone)][
+# ,hour.f :=as.factor(hour(timestampz))]
+# 
+# gc()
 
 #extract final data set-------------------------------------------------------------
 master_hour = master_hour[, c("taxi_zone",
@@ -313,13 +313,15 @@ master_hour = master_hour[, c("taxi_zone",
                                "plong",
                                "plat",
                                "boro",
-                               "zone.f",
-                               "hour.f",
-                               "weekday.f",
+                               #"zone.f",
+                               #"hour.f",
+                               #"weekday.f",
                                "gas_price",
                                "mean_temp",
                                "mean_wind_speed",
                                "rain_inches",
+                              "sp500",
+                              "cpi",
                                "bike_trips",
                                "trips_shl",
                                "trips_med",
@@ -342,6 +344,17 @@ gc()
 
 setwd(cabinets$home)
 write.csv(master_hour, "master_raw.csv")
+
+#write out a sample to GIT base
+setwd(cabinets$git_home)
+master_sample = master_hour[sample(1:nrow(master_hour), 1000000),]
+save(
+  master_sample,
+  compress = T,
+  compression_level = 8,
+  "master_sample.Rbin")
+
+
 
 #pull out zones that don't have a lot of data
 zone_distribution = master_write[,sum(total_trips), by = .(zone, year(timestamp))]

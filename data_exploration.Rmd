@@ -10,11 +10,70 @@ library(ggplot2)
 library(data.table)
 library(lubridate)
 library(ggthemes)
+library(fasttime)
+library(bit64)
+library(zoo)
 options(scipen = 999)
 
 
 setwd("C:\\Users\\lopezf\\Desktop\\regression_test\\regression_test")
-master = fread("master_raw.csv")[,-1]
+master = fread("master_raw.csv")[,-1][
+  ,timestampz:=fastPOSIXct(timestampz, tz = "GMT")][
+    ,subway_entries:=as.numeric(subway_entries)][
+      ,subway_exits:=as.numeric(subway_exits)]
+
+
+# 
+# [
+#   ,zone.f:=as.factor(taxi_zone)][
+#     ,hour.n:=as.numeric(as.character(hour))][
+#       ,weekday.f:=as.factor(weekday)]
+gc()
+str(master)
+summary(master)
+```
+
+
+##dealing with the missing data
+
+```{r missing_data}
+
+#treat missing values in data--------------------------------------------------------------
+#we assume taxi data as pure so NA's for trips = 0
+master[,trips_shl:= ifelse(is.na(trips_shl), 0, trips_shl)]
+master[,trips_med:= ifelse(is.na(trips_med), 0, trips_med)]
+master[,bike_trips:= ifelse(is.na(bike_trips),0,bike_trips)]
+master[,total_trips:= ifelse(is.na(total_trips),0,total_trips)]
+
+#code fs variables as 0 if not present 
+master[,arts_entertainment:= ifelse(is.na(arts_entertainment), 0, arts_entertainment)]
+master[,college_university := ifelse(is.na(college_university), 0 , college_university)]
+master[,event:= ifelse(is.na(event), 0, event)]
+master[,food := ifelse(is.na(food), 0, food)]
+master[,nightlife:= ifelse(is.na(nightlife), 0, nightlife)]
+master[,outdoors_rec := ifelse(is.na(outdoors_rec), 0, outdoors_rec)]
+master[,professional := ifelse(is.na(professional), 0, professional)]
+master[,residence := ifelse(is.na(residence), 0, residence)]
+master[,shop_service := ifelse(is.na(shop_service),0, shop_service)]
+master[,travel := ifelse(is.na(travel), 0 , travel)]
+
+#total_trips, weekday and zone as factor
+master[,weekday.f := as.factor(weekdays(timestampz))][
+,zone.f := as.factor(taxi_zone)][
+,hour.f :=as.factor(hour(timestampz))][
+,hour.n:=as.numeric(hour(timestampz))]
+
+
+#fill in NA for daily values 
+master[,cpi:=na.locf(cpi,fromLast = F)][
+  ,sp500:=na.locf(sp500,fromLast = F)][
+  ,mean_wind_speed:=na.locf(mean_wind_speed, fromLast = F)][
+    ,mean_temp:=na.locf(mean_temp, fromLast = F)][
+      ,rain_inches:=na.locf(rain_inches, fromLast = F)][
+      ,gas_price:= na.locf(gas_price,fromLast = F)]
+
+gc()
+
 
 ```
 
@@ -105,11 +164,127 @@ How has citibike usage changed over time?
 ##Bivariate Analysis and Distributions
 
 ```{r, distributions, echo = F}
-hist(master$gas_price)
+par(mfrow=c(3,2))
+hist(master$mean_temp, main="temperature")
+hist(master$mean_wind_speed, main="wind speed")
+hist(master$rain_inches, main="precipitation")
+hist(master$gas_price, main = "wholesale gas prices")
+hist(master$bike_trips, main = "daily citibike trips")
+hist(master$total_trips, main = "daily total trips")
+
+```
+
+
+```{r}
+plot(master[,.(hour.f,gas_price, mean_temp, mean_wind_speed, rain_inches, total_trips)])
+gc()
+```
+
+
+
+```{r}
+
+#zone hour of day combined
+master[,zh_c.f:=as.factor(paste0(as.character(zone.f),".",as.character(hour.f)))]
+
+#zone hour of day and weeday combined
+master[,zhwk_c.f:=as.factor(paste0(as.character(zone.f),"."
+                                   ,as.character(weekday.f),".",as.character(hour.f)))]
+
+
 
 
 ```
 
+
+
+
+
+
+##Running the basic model on Manhattan
+
+
+Here is the basic feature set:
+```{r basic_model}
+
+master_man = master[boro == "Manhattan",]
+
+#break training and test sets
+master_man = master_man[sample(1:nrow(master_man), 100000),]
+setorder(master_man, timestampz)
+samp = sample(nrow(master_man), 0.6 * nrow(master_man))
+train = master_man[samp, ]
+test = master_man[-samp, ]
+
+#features: zone, hourofday, dayofweek, daily rain, temperature
+fit = lm(total_trips ~  + 
+           mean_temp +
+           zone.f +
+           hour.n +
+           weekday.f +
+           rain_inches 
+           #+ gas_price 
+           , train)
+
+summary(fit)
+
+```
+
+
+We add to the linear regression the combination variables:
+```{r}
+gc()
+fit = lm(total_trips ~  + 
+           mean_temp +
+           zone.f +
+           hour.n +
+           weekday.f +
+           rain_inches 
+           +zh_c.f 
+           +zhwk_c.f
+           #+ gas_price 
+           , train)
+
+summary(fit)
+
+```
+
+
+
+##adding in other variables for Manhattan
+
+```{r, echo = F}
+
+
+
+fit = lm(total_trips ~  + 
+           mean_temp +
+           zone.f +
+           hour.n +
+           weekday.f +
+          zh_c.f +
+           zhwk_c.f + 
+           bike_trips +
+           #mean_wind_speed + 
+           rain_inches +
+           gas_price 
+         #+ authorized_vehicles
+         + arts_entertainment
+         + college_university
+         + event
+         + food
+         + nightlife
+         + outdoors_rec
+         + professional      
+         + residence
+         + shop_service
+         + travel
+         , train)
+
+summary(fit)
+
+
+```
 
 
 
