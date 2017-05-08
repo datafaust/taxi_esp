@@ -75,9 +75,28 @@ weather = weather[, c("EST", "Mean.TemperatureF", "Mean.Wind.SpeedMPH", "Precipi
 weather = weather[!duplicated(weather$EST),]
 names(weather) = c("timestampz", "mean_temp","mean_wind_speed","rain_inches")
 
+
+#weather data by hour-----------------------------------------------------------------------
+setwd(cabinets$git_home)
+
+temp = setDT(read.csv("hourly_temp.csv", header = T))[,.(DATE,HOURLYWindSpeed,
+                                                         HOURLYRelativeHumidity,
+                                                         HOURLYDRYBULBTEMPF,HOURLYPrecip)]
+temp[,timestampz:=as.POSIXct(paste0(substr(DATE, 1, 13), ":00"), tz =  "GMT")][
+  ,HOURLYDRYBULBTEMPF:=as.numeric(as.character(HOURLYDRYBULBTEMPF))][
+    ,HOURLYPrecip:=as.numeric(as.character(HOURLYPrecip))]
+
+#get rid of dups
+temp = temp[,.(mean_temp=round(mean(HOURLYDRYBULBTEMPF, na.rm = T))
+               ,mean_wind_speed=round(mean(HOURLYWindSpeed, na.rm = T))
+               ,rain_inches = round(mean(HOURLYPrecip, na.rm = T))
+               ,mean_humidity = round(mean(HOURLYRelativeHumidity, na.rm = T)))
+            ,by = .(timestampz)] 
+
+
 #citibike data by hour by taxi zone-------------------------------------------------------------------------------------------------
 #pull is depracated
-
+setwd(cabinets$home)
 # bikes = etl("citibike", dir = "C:/Users/lopezf/Desktop/regression_test/regression_test/citibike")
 # class(bikes)
 # is.etl(bikes)
@@ -241,6 +260,7 @@ class(subway_trips$timestampz) == class(gas_date_harbour$timestampz)
 class(gas_date_harbour$timestampz) == class(sp500$timestampz)
 class(sp500$timestampz) == class(cpifbev$timestampz)
 class(cpifbev$timestampz) == class(weather$timestampz)
+class(temp$timestampz) == class(temp$timestampz)
 
 #merge all dat----------------------------------------------------------------------------------------------------
 
@@ -252,6 +272,8 @@ master_day = merge(master_day, cpifbev, by = c("timestampz"), all.x = T)[,c(1,2,
     ,sp500:=na.locf(sp500,fromLast = F)][
       ,cpi:=na.locf(cpi,fromLast = F),][
         ,rain_inches:=ifelse(is.na(rain_inches), mean(rain_inches, na.rm = T), rain_inches)]
+
+master_day = master_day[,.(timestampz, gas_price, sp500, cpi)]
 
 #merge hourly variables on master tpep trip set
 master_hour = merge(master_hour, hourly_med_trips_loc[,c("taxi_zone", "trips_med","timestampz")]
@@ -268,6 +290,9 @@ master_hour = merge(master_hour, bike_trips[,c("taxi_zone","bike_trips", "timest
 #merge subway entries & exits
 master_hour = merge(master_hour, subway_trips[,c("taxi_zone","timestampz","subway_entries", "subway_exits")]
                     ,by = c("taxi_zone","timestampz"), all.x = T)
+
+#merge temp hourly
+master_hour = merge(master_hour, temp, by = "timestampz", all.x = T)
 
 #merge weather and gas 
 master_hour = merge(master_hour, master_day, by = "timestampz", all.x = T)
@@ -352,7 +377,7 @@ save(
   master_sample,
   compress = T,
   compression_level = 8,
-  "master_sample.Rbin")
+  file = "master_sample.Rbin")
 
 
 
